@@ -20,7 +20,7 @@ function populateSiteTable() {
 //erase sites from the table and from storage
 $("#clearSites").click(function () {
     var confirmed = confirm("This will delete all stored sites.");
-    if (confirmed == true) {
+    if (confirmed) {
         chrome.storage.sync.set({
             "sites": []
         }, function() {

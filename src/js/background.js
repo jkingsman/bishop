@@ -8,7 +8,7 @@ chrome.storage.sync.get(null, function (data) {
             alertFound: false,
             alertCSSFound: true,
 	    xhrDelay: true,
-	    exclusionList: "google.com"
+	    exclusionList: "google.com::facebook.com"
         };
 
         //default site and rule list (empty)

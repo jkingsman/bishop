@@ -40,12 +40,12 @@ function populateRuleTable() {
 //erase sites from the table and from storage
 $("#deleteAllRules").click(function () {
     var confirmed = confirm("This will delete all rules.");
-    if (confirmed == true) {
+    if (confirmed) {
         chrome.storage.sync.set({
             "rules": []
-        }, function(){
+        }, function() {
+            populateRuleTable();
             showNotification("success", "Rule list cleared.");
-            populateRulesTable();
         });
     }
 });
