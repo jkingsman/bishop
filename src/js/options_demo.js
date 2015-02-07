@@ -143,7 +143,7 @@ $("#addDemoRules").click(function () {
                 "name": "Cisco/Linksys tmUnblock.cgi",
                 "uid": Math.floor(Math.random() * 16777215).toString(16),
                 "enabled": false,
-                "description": "Exploitable router control file (no string to search for so too many false positives; disabled by deaault)",
+                "description": "Exploitable router control file (no string to search for so too many false positives; disabled by default)",
                 "url": "Cisco/Linksys tmUnblock.cgi",
                 "searchString": "",
                 "risk": "medium"
