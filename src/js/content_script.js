@@ -9,7 +9,7 @@ chrome.storage.sync.get(null, function (data) {
 	if (config.xhrDelay) {
 	    setTimeout(function(){ doScan(config.recursive); }, 5000);
 	} else{
-	    doScan(config.recursive);	    
+	    doScan(config.recursive);
 	}
     }
 });
@@ -19,16 +19,15 @@ function doScan(recursive) {
     //the extension is enabled
     var currentScanUrl = stripTrailingSlash(window.location.href);
 
-    if (config.exclusionList.length > 0) {	
+    if (config.exclusionList.length > 0) {
 	var excludes = config.exclusionList.split("::");
-	
-	for (var i = 0; i < excludes; i++) {
+	for (var i = 0; i < excludes.length; i++) {
 	    if(currentScanUrl.indexOf(excludes[i]) > -1){
 		return;
 	    }
 	}
     }
-    
+
     if (recursive) {
 	//keep processing URLs, including the current one and all parents, until we can't anymore
 	while (currentScanUrl != -1) {
@@ -45,7 +44,7 @@ function doScan(recursive) {
 function scanURL(url) {
     for (var i = 0; i < rules.length; i++) {
 	var rule = rules[i];
-	
+
 	if (rule.enabled) {
 	    if (upAndHas(url + "/" + rule.url, rule.searchString)) {
 		addSiteAndAlert(url, rule.name);
@@ -60,9 +59,10 @@ function addSiteAndAlert(url, rule) {
     //pull our site list out of storage
     chrome.storage.sync.get(null, function (data) {
         sites = data.sites;
-	
+
 	//make sure we're not duplicating; get out if we are.
 	for (var i = 0; i < sites.length; i++) {
+	  console.log
 	    var site = sites[i];
 	    if (site.url == url && site.rule == rule) {
 		return;
@@ -104,7 +104,7 @@ function addSiteAndAlert(url, rule) {
             (document.head || document.documentElement).appendChild(style);
 
             //insert the alert itself
-            document.body.insertAdjacentHTML('afterBegin', '<div id="note">Bishop matched your rule ' + rule + ' at ' + url + '. (Refresh page to dismiss)</div>');
+            document.body.insertAdjacentHTML('afterBegin', '<div id="note">Bishop matched your rule "' + rule + '". (Refresh page to dismiss)</div>');
         }
     });
 }
@@ -130,7 +130,7 @@ function nextParent(url) {
 }
 
 //returns true if the url responds 200 and the responsebody contains string
-//use to just check for 200 
+//use to just check for 200
 function upAndHas(url, string) {
     var req = new XMLHttpRequest();
     req.open('GET', url, false);
