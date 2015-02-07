@@ -95,3 +95,9 @@ $("#demoCSSAlert").click(function () {
 
 //bind events to dom elements
 document.addEventListener('DOMContentLoaded', init_main);
+
+//listen for storage changes
+chrome.storage.onChanged.addListener(function(changes, namespace) {
+    populateRuleTable();
+    populateSiteTable();
+});
