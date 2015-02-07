@@ -124,7 +124,7 @@ $("#addDemoRules").click(function () {
 	    {
                 "name": "Unix /etc/passwd 2",
                 "uid": Math.floor(Math.random() * 16777215).toString(16),
-                "enabled": false,
+                "enabled": true,
                 "description": "Web accessible /etc/password file (URL encoded)",
                 "url": "%2e%2e%2f%2e%2e%2f%2e%2e%2f%2e%2e%2f%2e%2e%2f%2e%2e%2fetc%2fpasswd",
                 "searchString": ":",
