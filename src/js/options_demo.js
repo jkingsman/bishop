@@ -28,7 +28,7 @@ $("#addDemoRules").click(function () {
                 "enabled": true,
                 "description": "Find publicly accessible SVN dirs",
                 "url": ".svn/entries",
-                "searchString": "dir",
+                "searchString": "svn:",
                 "risk": "medium"
             },
             {

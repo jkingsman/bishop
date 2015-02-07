@@ -37,6 +37,19 @@ function populateRuleTable() {
     });
 }
 
+//erase sites from the table and from storage
+$("#deleteAllRules").click(function () {
+    var confirmed = confirm("This will delete all rules.");
+    if (confirmed == true) {
+        chrome.storage.sync.set({
+            "rules": []
+        }, function(){
+            showNotification("success", "Rule list cleared.");
+            populateRulesTable();
+        });
+    }
+});
+
 //iterates through all checkbox
 function handleCheckboxes(rules) {
     //loop through and check

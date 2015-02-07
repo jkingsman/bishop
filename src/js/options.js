@@ -23,11 +23,11 @@ function buildPage() {
         //set our checkboxes to what's in storage
         $("#enabled").prop("checked", enabled);
         $("#recursive").prop("checked", config.recursive);
-	
+
         $("#soundFound").prop("checked", config.soundFound);
         $("#alertFound").prop("checked", config.alertFound);
         $("#alertCSSFound").prop("checked", config.alertCSSFound);
-	
+
 	$("#xhrDelay").prop("checked", config.xhrDelay);
 	$("#exclusionList").val(config.exclusionList);
 
@@ -60,14 +60,14 @@ $("#config").submit(function (e) {
     //build out an array of config options
     var config = {
         recursive: $("#recursive").prop("checked"),
-	
+
         soundFound: $("#soundFound").prop("checked"),
         alertFound: $("#alertFound").prop("checked"),
         alertCSSFound: $("#alertCSSFound").prop("checked"),
-	
+
 	xhrDelay: $("#xhrDelay").prop("checked"),
 	exclusionList: $("#exclusionList").val()
-	
+
     };
 
     //store config

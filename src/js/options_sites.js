@@ -5,7 +5,7 @@ function populateSiteTable() {
         //populate the table
         for (var i = 0; i < data.sites.length; i++) {
             var site = data.sites[i];
-            
+
             //append the URL to the table
             $('#siteTableBody').append('<tr><td><strong>' + site.url + '</strong></td><td>' + site.rule + '</td><td class="text-center"><a href="#" id="delSite' + site.uid + '"><i class="glyphicon glyphicon-trash"></i></a></td>');
         }
@@ -23,9 +23,10 @@ $("#clearSites").click(function () {
     if (confirmed == true) {
         chrome.storage.sync.set({
             "sites": []
+        }, function() {
+            populateSiteTable();
+            showNotification("success", "Site list cleared.");
         });
-        populateSiteTable();
-        showNotification("success", "Site list cleared.");
     }
 });
 
