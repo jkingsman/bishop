@@ -20,11 +20,12 @@ function doScan(recursive) {
     var currentScanUrl = stripTrailingSlash(window.location.href);
 
     if (config.exclusionList.length > 0) {
-  //we have an exclusion list to work with; break it out
+	//we have an exclusion list to work with; break it out
 	var excludes = config.exclusionList.split("::");
+	console.log(excludes);
 	for (var i = 0; i < excludes.length; i++) {
-	    if(currentScanUrl.indexOf(excludes[i]) > -1){
-	  //this page contains a blocked url string; get outta here
+	    if(currentScanUrl.indexOf(excludes[i]) > -1 && excludes[i].length > 0){
+		//this page contains a blocked url string and it's not an empty string; get outta here
 		return;
 	    }
 	}
