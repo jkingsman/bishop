@@ -92,7 +92,7 @@ function addSiteAndAlert(url, rule) {
             //the timeout is here due to some weird issue where, without a timeout, alert dismissal is required before the audio plays
             //I'm guessing it's some issue with async processes getting blocked but who knows. this seems to fix it.
             setTimeout(function () {
-                alert('Bishop matched your rule ' + rule + ' at ' + url);
+                alert('&#9821; Bishop matched your rule ' + rule + ' at ' + url);
             }, 500);
         }
 
@@ -105,7 +105,7 @@ function addSiteAndAlert(url, rule) {
             (document.head || document.documentElement).appendChild(style);
 
             //insert the alert itself
-            document.body.insertAdjacentHTML('afterBegin', '<div id="note">Bishop matched your rule "' + rule + '". (Refresh page to dismiss)</div>');
+            document.body.insertAdjacentHTML('afterBegin', '<div id="note">&#9821; Bishop matched your rule "' + rule + '". (Refresh page to dismiss)</div>');
         }
     });
 }
