@@ -4,7 +4,7 @@ function populateRuleTable() {
         //populate the table
         for (var i = 0; i < data.rules.length; i++) {
             var rule = data.rules[i], riskClass, riskText;
-            
+
             switch(rule.risk) {
                 case "low":
                     riskClass = "bg-success";
@@ -26,7 +26,7 @@ function populateRuleTable() {
             //append the URL to the table
             $('#rulesTableBody').append('<tr><td><input type="checkbox" id="ruleEnabled' + rule.uid + '"></td><td class="' + riskClass + '">' + riskText + '</td><td>' + rule.name + '</td><td>' + rule.description + '</td><td>' + rule.url + '</td><td>' + rule.searchString + '</td><td class="text-center"><a href="#" id="delRule' + rule.uid + '"><i class="glyphicon glyphicon-trash"></i></a></td></tr>');
         }
-        
+
         //check or uncheck as appropriate
         handleCheckboxes(data.rules);
 
@@ -64,7 +64,7 @@ $("#saveRule").click(function () {
 
     chrome.storage.sync.get(null, function (data) {
         rules = data.rules;
-	
+
         //push the current rule onto the array
         rules.push({
             "enabled": true,
@@ -75,7 +75,7 @@ $("#saveRule").click(function () {
             "searchString": $("#urlBody").val(),
             "risk": $('input[name=risk]:checked').val()
         });
-	
+
 	chrome.storage.sync.set({
             'rules': rules
         }, function(){
@@ -83,48 +83,7 @@ $("#saveRule").click(function () {
 	    showNotification("success", "Rule added.");
 	    populateRuleTable();
             $("#addRuleForm")[0].reset();
-	});	
-    });
-});
-
-//pops up a modal where we can build a new rule
-$("#addDemoRules").click(function () {
-    chrome.storage.sync.get(null, function (data) {
-        rules = data.rules;
-	
-        var demoRules = [
-            {
-                "name": "Git Repo",
-                "uid": Math.floor(Math.random() * 16777215).toString(16),
-                "enabled": true,
-                "description": "Find publically accessible .git repos",
-                "url": ".git/HEAD",
-                "searchString": "ref:",
-                "risk": "low"
-            },
-            {
-                "name": "Git Repo (Indexable; Apache)",
-                "uid": Math.floor(Math.random() * 16777215).toString(16),
-                "enabled": true,
-                "description": "Find index-listing .git dirs",
-                "url": ".git",
-                "searchString": "Index of",
-                "risk": "low"
-            }
-        ];
-        
-        //push the new rules in
-        for (var i = 0; i < demoRules.length; i++) {
-            rules.push(demoRules[i]);
-        }
-	
-	chrome.storage.sync.set({
-            'rules': rules
-        }, function(){
-	    $('#addRuleModal').modal('hide');
-	    showNotification("success", "Rule added.");
-	    populateRuleTable();
-	});	
+	});
     });
 });
 
@@ -180,10 +139,10 @@ $(document.body).on("click", "[id^=ruleEnabled]", function () {
 //deal with any of the enable buttons
 $(document.body).on("click", "[id^=bulkEnable]", function () {
     var selector = this.id.replace(/bulkEnable/g, '');
-    
+
      chrome.storage.sync.get(null, function (data) {
         rules = data.rules;
-        
+
         switch(selector) {
             case "All":
                 for (var i = 0; i < rules.length; i++) {
@@ -216,24 +175,24 @@ $(document.body).on("click", "[id^=bulkEnable]", function () {
                 }
                 break;
         };
-        
+
         chrome.storage.sync.set({
             "rules": rules
         }, function(){
             handleCheckboxes(data.rules);
 	    showNotification("success", "Rule status changed.");
 	});
-        
+
     });
 });
 
 //deal with any of the disable buttons
 $(document.body).on("click", "[id^=bulkDisable]", function () {
     var selector = this.id.replace(/bulkDisable/g, '');
-    
+
      chrome.storage.sync.get(null, function (data) {
         rules = data.rules;
-        
+
         switch(selector) {
             case "All":
                 for (var i = 0; i < rules.length; i++) {
@@ -266,13 +225,13 @@ $(document.body).on("click", "[id^=bulkDisable]", function () {
                 }
                 break;
         };
-        
+
         chrome.storage.sync.set({
             "rules": rules
         }, function(){
             handleCheckboxes(data.rules);
 	    showNotification("success", "Rule status changed.");
 	});
-        
+
     });
 });

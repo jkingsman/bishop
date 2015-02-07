@@ -64,7 +64,6 @@ function addSiteAndAlert(url, rule) {
 
 	//make sure we're not duplicating; get out if we are.
 	for (var i = 0; i < sites.length; i++) {
-	  console.log
 	    var site = sites[i];
 	    if (site.url == url && site.rule == rule) {
 		return;
