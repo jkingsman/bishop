@@ -1,0 +1,34 @@
+{
+    "manifest_version": 2,
+    "name": "Bishop",
+    "version": "0.0.0.1",
+    "description": "Search websites for git repos, expose config files, and more as you browse.",
+    "author": "Jack Kingsman <jack.kingsman@gmail.com>",
+    "background": {
+      "scripts": ["js/background.js"]
+    },
+	"browser_action":{
+        "default_title":"Bishop",
+        "default_icon":{
+            "19":"img/bishop19.png",
+            "38":"img/bishop38.png"
+        },
+        "default_popup":"html/popup.html"
+    },
+    "icons": {
+        "16": "img/bishop16.png",
+        "48": "img/bishop48.png",
+        "128": "img/bishop128.png"
+    },
+    "content_scripts": [{
+        "matches": ["*://*/*"],
+        "js": ["js/content_script.js"],
+        "run_at": "document_end"
+    }],
+    "options_page": "html/options.html",
+    "permissions": ["storage"],
+	"web_accessible_resources": [
+		"audio/alert.mp3",
+		"css/alert.css"
+	]
+}

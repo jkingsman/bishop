@@ -1,0 +1,15 @@
+/*
+** file: css/global.css
+** description: global stylesheet containing css definitions for elements across the entire chrome extension, styles
+**              unique to a single page should be defined in their own "page.html" file
+*/
+
+div.page-title {
+    font-size: 20px;
+    line-height: 24px;
+}
+
+div.page-subtitle {
+    font-size: 16px;
+    line-height: 20px;
+}

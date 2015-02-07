@@ -1,0 +1,40 @@
+/*
+** file: css/main.css
+** description: custom styling for "html/main.html" file
+*/
+
+div#main-outer {
+    width: 300px;
+    margin: 5px;
+    background: #DDD;
+    border-radius: 5px;
+}
+
+div#main-outer-options {
+    width: 700px;
+    margin: 5px;
+    background: #DDD;
+    border-radius: 5px;
+}
+
+div#main-inner {
+    padding: 8px;
+}
+
+div#main-title {
+    font-size: 16px;
+    text-align: center;
+    font-weight: bold;
+}
+
+img#main-image {
+    display: block;
+    margin-top: 5px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+div#main-about-text {
+    margin-top: 10px;
+    text-align: center;
+}

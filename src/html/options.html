@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Bishop Configuration</title>
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css"></link>
+    <link rel="stylesheet" type="text/css" href="../css/alert.css"></link>
+</head>
+
+<body>
+    <div class="container">
+        <h2><img src="../img/bishop38.png"> Bishop</h2>
+        <div id="notifications"></div>
+        <hr />
+        <div class="row">
+            <div class="col-md-12">
+                <h3><i class="glyphicon glyphicon-screenshot"></i> Vulnerable Sites</h3>
+                <a href="#" id="clearSites" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-trash"></i> Clear Vulnerable Sites</a>
+                <a href="#" id="exportSites" class="btn btn-sm btn-primary pull-right"><i class="glyphicon glyphicon-share-alt"></i> Export Vulnerable Sites</a>
+                <div class="clearfix"></div>
+                <div style="height: 200px; overflow: auto;">
+                    <table class="table table-striped" id="siteTable">
+                        <thead>
+                            <tr>
+                                <th>Location</th>
+                                <th>Matched Rule</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody id="siteTableBody">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h3><i class="glyphicon glyphicon-th-list"></i> Rules</h3>
+		<div class="btn-group">
+		    <button type="button" class="btn btn-success" id="bulkEnableAll">Enable All</button>
+		    <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+			<span class="caret"></span>
+			<span class="sr-only">Toggle Dropdown</span>
+		    </button>
+		    <ul class="dropdown-menu" role="menu">
+			<li><a href="#" id="bulkEnableLow">Enable Low Risk</a></li>
+			<li><a href="#" id="bulkEnableMedium">Enable Medium Risk</a></li>
+			<li><a href="#" id="bulkEnableHigh">Enable High Risk</a></li>
+		    </ul>
+		</div>
+		<div class="btn-group">
+		    <button type="button" class="btn btn-danger" id="bulkDisableAll">Disable All</button>
+		    <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+			<span class="caret"></span>
+			<span class="sr-only">Toggle Dropdown</span>
+		    </button>
+		    <ul class="dropdown-menu" role="menu">
+			<li><a href="#" id="bulkDisableLow">Disable Low Risk</a></li>
+			<li><a href="#" id="bulkDisableMedium">Disable Medium Risk</a></li>
+			<li><a href="#" id="bulkDisableHigh">Disable High Risk</a></li>
+		    </ul>
+		</div>
+                <a href="#" id="addDemoRules" class="btn btn-sm btn-primary pull-right"><i class="glyphicon glyphicon-trash"></i> Add Demo Rules</a>
+                <a href="#" id="addRule" class="btn btn-sm btn-success pull-right" style="margin-right: 5px;"><i class="glyphicon glyphicon-plus"></i> Add Rule</a>
+                <div class="clearfix"></div>
+                <div style="height: 200px; overflow: auto;">
+                    <table class="table table-striped" id="ruleTable">
+                        <thead>
+                            <tr>
+				<th>Enabled</th>
+                                <th>Risk</th>
+                                <th>Rule</th>
+                                <th>Description</th>
+                                <th>URL</th>
+                                <th>Search String</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody id="rulesTableBody">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-md-7">
+                <h3><i class="glyphicon glyphicon-cog"></i> Configuration</h3>
+                <form id="config" class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Enabled</label>
+                        <div class="col-sm-10">
+                            <div class="checkbox">
+                                <input type="checkbox" id="enabled"> If unchecked, Bishop won't send any requests or test pages
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Recursive</label>
+                        <div class="col-sm-10">
+                            <div class="checkbox">
+                                    <input type="checkbox" id="recursive"> If checked, Bishop will recurse to all parent directories (i.e <code>/dir/subdir/folder</code>, <code>/dir/subdir/</code>, <code>/dir/</code>, and <code>/</code>). Recursive will yield the most results, but also fires off the most XHR requests.
+                            </div>
+                        </div>
+                    </div>
+		    <div class="form-group">
+                        <label class="col-sm-2 control-label">XHR</label>
+                        <div class="col-sm-10">
+                            <div class="checkbox">
+                                <input type="checkbox" id="xhrDelay"> Delay XHR requests by 5 seconds after page load (reduces network strain)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Sounds*</label>
+                        <div class="col-sm-10">
+                            <div class="checkbox">
+                                <input type="checkbox" id="soundFound"> Play sound when a match is found (<a href="#" id="demoSound">Play Sound</a>)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Alerts*</label>
+                        <div class="col-sm-10">
+                            <div class="checkbox">
+                                <input type="checkbox" id="alertFound"> Show JS alert when a match is found (page blocking; <a href="#" id="demoAlert">demo alert</a>)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <div class="checkbox">
+                                <input type="checkbox" id="alertCSSFound"> Show in-page CSS alert at the top of the page when a match is found (non-page blocking; <a href="#" id="demoCSSAlert">demo alert</a>)
+                            </div>
+                        </div>
+                    </div>
+		    <div class="form-group">
+                        <label class="col-sm-2 control-label">Excluded</label>
+                        <div class="col-sm-10">
+                            <div class="checkbox">
+                                Enter strings separated by a double colon ('::'). If one of these strings is found in a URL, the URL won't be scanned.<br />
+				<input id="exclusionList">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <span class="text-muted">* the extension icon will display the number of new matches discovered since the last visit to the options page regardless of the Dings and Alerts configuration.</span>
+                            <hr />
+                            <input type="submit" class="btn btn-success pull-right" value="Save Settings"></input>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+            <div class="col-md-5">
+                <h3><i class="glyphicon glyphicon-pencil"></i> Notes</h3>
+            </div>
+        </div>
+        <hr />
+        <p class="text-center text-muted">MIT Licensed | <a href="https://github.com/jkingsman/get-git">Fork this on GitHub</a>
+        </p>
+    </div>
+
+    <div class="modal fade" id="exportDataModal" tabindex="-1" role="dialog" aria-labelledby="exportData" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="exportDataLabel">Export Vulnerable Sites</h4>
+                </div>
+                <div class="modal-body">
+                    <textarea id="exportBox" style="-webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: order-box; width: 100%;"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="addRuleModal" tabindex="-1" role="dialog" aria-labelledby="addRule" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form class="form-horizontal" id="addRuleForm">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title" id="detailsLabel">Add Rule</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="ruleName" class="col-sm-2 control-label">Name</label>
+                            <div class="col-sm-10">
+                                <input class="form-control" id="ruleName" placeholder=".git/HEAD" required="required">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="ruleDesc" class="col-sm-2 control-label">Description</label>
+                            <div class="col-sm-10">
+                                <input class="form-control" id="ruleDesc" placeholder="Finds Git repos by checking for 'ref:' in .git/HEAD.">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="existenceURL" class="col-sm-2 control-label">Check URL*</label>
+                            <div class="col-sm-10">
+                                <input class="form-control" id="existenceURL" placeholder=".git/HEAD" required="required">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="urlBody" class="col-sm-2 control-label">URL body contains</label>
+                            <div class="col-sm-10">
+                                <input class="form-control" id="urlBody" placeholder="ref:">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="urlBody" class="col-sm-2 control-label">Risk</label>
+                            <div class="col-sm-10">
+                                <label class="radio-inline">
+                                    <input type="radio" name="risk" id="risk0" value="low"> <span class="bg-success">Low</span>
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="risk" id="risk1" value="medium"> <span class="bg-warning">Medium</span>
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="risk" id="risk2" value="high"> <span class="bg-danger">High</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-10 col-sm-offset-2">
+                            *(no trailing or leading slash)
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-success" id="saveRule">Save Rule</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap-growl.min.js"></script>
+
+    <script type="text/javascript" src="../js/options_sites.js"></script>
+    <script type="text/javascript" src="../js/options_rules.js"></script>
+    <script type="text/javascript" src="../js/options.js"></script>
+</body>
+
+</html>
