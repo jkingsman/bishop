@@ -92,7 +92,7 @@
                         <label class="col-sm-2 control-label">Enabled</label>
                         <div class="col-sm-10">
                             <div class="checkbox">
-                                <label><input type="checkbox" id="enabled"> If unchecked, Bishop won't send any requests or test pages</label>
+                                <label><input type="checkbox" id="enabled" name="config"> If unchecked, Bishop won't send any requests or test pages</label>
                             </div>
                         </div>
                     </div>
@@ -100,7 +100,7 @@
                         <label class="col-sm-2 control-label">Recursive</label>
                         <div class="col-sm-10">
                             <div class="checkbox">
-                                    <label><input type="checkbox" id="recursive"> If checked, Bishop will recurse to all parent directories (i.e <code>/dir/subdir/folder</code>, <code>/dir/subdir/</code>, <code>/dir/</code>, and <code>/</code>). Recursive will yield the most results, but also fires off the most XHR requests.</label>
+                                    <label><input type="checkbox" id="recursive" name="config"> If checked, Bishop will recurse to all parent directories (i.e <code>/dir/subdir/folder</code>, <code>/dir/subdir/</code>, <code>/dir/</code>, and <code>/</code>). Recursive will yield the most results, but also fires off the most XHR requests.</label>
                             </div>
                         </div>
                     </div>
@@ -108,7 +108,7 @@
                         <label class="col-sm-2 control-label">XHR</label>
                         <div class="col-sm-10">
                             <div class="checkbox">
-                                <label><input type="checkbox" id="xhrDelay"> Delay XHR requests by 5 seconds after page load (reduces network strain)</label>
+                                <label><input type="checkbox" id="xhrDelay" name="config"> Delay XHR requests by 5 seconds after page load (reduces network strain)</label>
                             </div>
                         </div>
                     </div>
@@ -116,7 +116,7 @@
                         <label class="col-sm-2 control-label">Sounds*</label>
                         <div class="col-sm-10">
                             <div class="checkbox">
-                                <label><input type="checkbox" id="soundFound"> Play sound when a match is found (<a href="#" id="demoSound">Play Sound</a>)</label>
+                                <label><input type="checkbox" id="soundFound" name="config"> Play sound when a match is found (<a href="#" id="demoSound">Play Sound</a>)</label>
                             </div>
                         </div>
                     </div>
@@ -124,14 +124,14 @@
                         <label class="col-sm-2 control-label">Alerts*</label>
                         <div class="col-sm-10">
                             <div class="checkbox">
-                                <label><input type="checkbox" id="alertFound"> Show JS alert when a match is found (page blocking; <a href="#" id="demoAlert">demo alert</a>)</label>
+                                <label><input type="checkbox" id="alertFound" name="config"> Show JS alert when a match is found (page blocking; <a href="#" id="demoAlert">demo alert</a>)</label>
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
                             <div class="checkbox">
-                                <label><input type="checkbox" id="alertCSSFound"> Show in-page CSS alert at the top of the page when a match is found (non-page blocking; <a href="#" id="demoCSSAlert">demo alert</a>)</label>
+                                <label><input type="checkbox" id="alertCSSFound" name="config"> Show in-page CSS alert at the top of the page when a match is found (non-page blocking; <a href="#" id="demoCSSAlert">demo alert</a>)</label>
                             </div>
                         </div>
                     </div>
@@ -139,15 +139,13 @@
                         <label class="col-sm-2 control-label">Excluded</label>
                         <div class="col-sm-10">
                             <div class="checkbox">
-                                <label>Enter strings separated by a double colon ('::'). If one of these strings is found in a URL, the URL won't be scanned. <input id="exclusionList"></label>
+                                <label>Enter strings separated by a double colon ('::'). If one of these strings is found in a URL, the URL won't be scanned. <input id="exclusionList" name="config"></label>
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
                             <span class="text-muted">* the extension icon will display the number of new matches discovered since the last visit to the options page regardless of the Dings and Alerts configuration.</span>
-                            <hr />
-                            <input type="submit" class="btn btn-success pull-right" value="Save Settings"></input>
                         </div>
                     </div>
                 </form>
