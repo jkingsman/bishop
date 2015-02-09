@@ -28,9 +28,6 @@ function init_main() {
         }
     });
 
-    //init our switch
-    $('#status').bootstrapSwitch();
-
     //build options link
     $("#optLink").attr("href", chrome.extension.getURL("html/options.html"));
 
