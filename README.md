@@ -5,4 +5,4 @@ Bishop is a Chrome extension that will hunt websites you browse for files that c
 
 License
 =============
-MIT
+MIT, with provision not to submit this code or code derived from this to the Chrome Web Store without express written permission.
