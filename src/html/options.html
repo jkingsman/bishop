@@ -15,8 +15,17 @@
         <div class="row">
             <div class="col-md-12">
                 <h3><i class="glyphicon glyphicon-screenshot"></i> Vulnerable Sites</h3>
-                <a href="#" id="clearSites" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-trash"></i> Clear Vulnerable Sites</a>
-                <a href="#" id="exportSites" class="btn btn-sm btn-primary pull-right"><i class="glyphicon glyphicon-share-alt"></i> Export Vulnerable Sites</a>
+                <div class="btn-group">
+            		    <button type="button" class="btn btn-sm btn-warning" id="clearSites"><i class="glyphicon glyphicon-trash"></i> Clear Vulnerable Sites</button>
+            		    <button type="button" class="btn btn-sm btn-warning dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+            			<span class="caret"></span>
+            			<span class="sr-only">Toggle Dropdown</span>
+            		    </button>
+            		    <ul class="dropdown-menu" role="menu">
+            			<li><a href="#" id="dedupSites">Remove Duplicate Sites</a></li>
+            		    </ul>
+            		</div>
+                <button id="exportSites" class="btn btn-sm btn-primary pull-right"><i class="glyphicon glyphicon-share-alt"></i> Export Vulnerable Sites</button>
                 <div class="clearfix"></div>
                 <div style="height: 200px; overflow: auto;">
                     <table class="table table-striped" id="siteTable">

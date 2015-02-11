@@ -1,10 +1,13 @@
 //clear sites table and populate
+
+
 function populateSiteTable() {
+    var site;
     $('#siteTableBody').empty();
     chrome.storage.sync.get(null, function (data) {
         //populate the table
         for (var i = 0; i < data.sites.length; i++) {
-            var site = data.sites[i];
+            site = data.sites[i];
 
             //append the URL to the table
             $('#siteTableBody').append('<tr><td><strong>' + site.url + '</strong></td><td>' + site.rule + '</td><td class="text-center"><a href="#" id="delSite' + site.uid + '"><i class="glyphicon glyphicon-trash"></i></a></td>');
@@ -23,7 +26,7 @@ $("#clearSites").click(function () {
     if (confirmed) {
         chrome.storage.sync.set({
             "sites": []
-        }, function() {
+        }, function () {
             populateSiteTable();
             showNotification("success", "Site list cleared.");
         });
@@ -33,9 +36,47 @@ $("#clearSites").click(function () {
 //pops up a modal with the JSON of the vulnerable sites in it
 $("#exportSites").click(function () {
     chrome.storage.sync.get(null, function (data) {
-        sites = data.sites;
+        var sites = data.sites;
         $("#exportBox").val(JSON.stringify(sites));
         $('#exportDataModal').modal('show');
+    });
+});
+
+//deduplicates site list
+$("#dedupSites").click(function () {
+    chrome.storage.sync.get(null, function (data) {
+        var sites = data.sites;
+        var nonDups = [],
+            isDup = 0,
+            site, checkSite;
+
+        //loop through all our sites; add the unique ones to a nonDups list
+        for (var i = 0; i < sites.length; i++) {
+            isDup = 0;
+            site = data.sites[i];
+
+            //loop through all our no duplicates; set the flag if we find it in there (it's a duplicate)
+            for (var j = 0; j < nonDups.length; j++) {
+                checkSite = nonDups[j];
+                if (site.url == checkSite.url && site.rule == checkSite.rule) {
+                    isDup = 1;
+                }
+            }
+
+            //it's not in the nonduplicate list; add it
+            if (!isDup) {
+                nonDups.push(site);
+            }
+        }
+
+        //send it to the great gig in the sky
+        chrome.storage.sync.set({
+            'sites': nonDups
+        }, function () {
+            //redraw after sync
+            populateSiteTable();
+            showNotification("success", "List deduplicated. You may need to refresh to see the changes.");
+        });
     });
 });
 
@@ -57,10 +98,10 @@ $(document.body).on("click", "[id^=delSite]", function () {
 
         chrome.storage.sync.set({
             "sites": sites
-        }, function(){
-	    //redraw
-	    populateSiteTable();
-	    showNotification("warning", "Site deleted.");
-	});
+        }, function () {
+            //redraw
+            populateSiteTable();
+            showNotification("warning", "Site deleted.");
+        });
     });
 });
