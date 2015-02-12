@@ -27,7 +27,6 @@ $("#clearSites").click(function () {
         chrome.storage.sync.set({
             "sites": []
         }, function () {
-            populateSiteTable();
             showNotification("success", "Site list cleared.");
         });
     }
@@ -73,8 +72,6 @@ $("#dedupSites").click(function () {
         chrome.storage.sync.set({
             'sites': nonDups
         }, function () {
-            //redraw after sync
-            populateSiteTable();
             showNotification("success", "List deduplicated. You may need to refresh to see the changes.");
         });
     });
@@ -99,8 +96,6 @@ $(document.body).on("click", "[id^=delSite]", function () {
         chrome.storage.sync.set({
             "sites": sites
         }, function () {
-            //redraw
-            populateSiteTable();
             showNotification("warning", "Site deleted.");
         });
     });
