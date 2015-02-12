@@ -1,9 +1,15 @@
 function populateRuleTable() {
+    var rule, riskClass, riskText;
+    var totalCount = 0, activeCount = 0;
+    
     $('#rulesTableBody').empty();
     chrome.storage.sync.get(null, function (data) {
         //populate the table
         for (var i = 0; i < data.rules.length; i++) {
-            var rule = data.rules[i], riskClass, riskText;
+            rule = data.rules[i];
+	    
+	    totalCount++;
+	    if(rule.enabled){activeCount++;}
 
             switch(rule.risk) {
                 case "low":
@@ -30,6 +36,9 @@ function populateRuleTable() {
         //check or uncheck as appropriate
         handleCheckboxes(data.rules);
 
+	//set our counts
+	$('#ruleCount').html("(" + activeCount + " of " + totalCount + " rules enabled; " + (activeCount * data.config.xhrDelay) +  " seconds to process all)");
+	
         //let the user know if we don't have any sites stored
         if (data.rules.length < 1) {
             $('#rulesTableBody').append('<tr><td colspan=7>No rules added yet!</td></tr>');
