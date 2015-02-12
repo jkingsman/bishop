@@ -20,7 +20,6 @@ function buildPage() {
         sites = data.sites;
         enabled = data.status;
 
-
         //set our checkboxes to what's in storage
         $("#enabled").prop("checked", enabled);
         $("#recursive").prop("checked", config.recursive);
@@ -31,6 +30,9 @@ function buildPage() {
 
 	$("#xhrDelay").val(config.xhrDelay);
 	$("#exclusionList").val(config.exclusionList);
+	
+	populateRuleTable();
+	populateSiteTable();
 
         //be loud if it's disabled
         if (!enabled) {
@@ -92,11 +94,11 @@ $("#demoCSSAlert").click(function () {
     $('body').prepend('<div id="note">This website has a web accessible .git directory! (Refresh page to dismiss)</div>');
 });
 
-//bind events to dom elements
-document.addEventListener('DOMContentLoaded', init_main);
-
-//listen for storage changes
+//get live updates when something changes
 chrome.storage.onChanged.addListener(function(changes, namespace) {
     populateRuleTable();
     populateSiteTable();
 });
+
+//bind events to dom elements
+document.addEventListener('DOMContentLoaded', init_main);
