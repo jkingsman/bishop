@@ -91,7 +91,7 @@ $("#demoAlert").click(function () {
 
 //show what the CSS alert looks like
 $("#demoCSSAlert").click(function () {
-    $('body').prepend('<div id="note">This website has a web accessible .git directory! (Refresh page to dismiss)</div>');
+    $('body').prepend('<div id="note">&#9821; Bishop matched your rule "Git Repo". (Refresh page to dismiss)</div>');
 });
 
 //get live updates when something changes
