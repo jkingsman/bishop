@@ -10,7 +10,7 @@ $("#addDemoRules").click(function () {
                 "enabled": true,
                 "description": "Find publicly accessible .git repos",
                 "url": ".git/HEAD",
-                "searchString": "ref:",
+                "searchString": "ref: (refs|[0-9a-fA-F]+)",
                 "risk": "medium"
             },
             {
@@ -41,6 +41,15 @@ $("#addDemoRules").click(function () {
                 "risk": "low"
             },
             {
+                "name": "eval'ing a Variable",
+                "uid": Math.floor(Math.random() * 16777215).toString(16),
+                "enabled": true,
+                "description": "FInd JS eval's that concatenate",
+                "url": "/",
+                "searchString": "eval(\s|)\((\"|').*(\"|')(\s|)\+", //note that the double quotes in this are escaped; the original regex is eval(\s|)\(("|').*("|')(\s|)\+
+                "risk": "medium"
+            },
+            {
                 "name": "phpMyAdmin Setup",
                 "uid": Math.floor(Math.random() * 16777215).toString(16),
                 "enabled": true,
@@ -52,7 +61,7 @@ $("#addDemoRules").click(function () {
             {
                 "name": "Typo3 phpMyAdmin Setup",
                 "uid": Math.floor(Math.random() * 16777215).toString(16),
-                "enabled": true,
+                "enabled": false,
                 "description": "Accessible phpMyAdmin setup page on Typo3",
                 "url": "typo3/phpmyadmin/scripts/setup.php",
                 "searchString": "phpMyAdmin",
@@ -61,7 +70,7 @@ $("#addDemoRules").click(function () {
             {
                 "name": "phpMyAdmin Setup (alt. name 1)",
                 "uid": Math.floor(Math.random() * 16777215).toString(16),
-                "enabled": true,
+                "enabled": false,
                 "description": "Accessible phpMyAdmin setup page (alt. name)",
                 "url": "phpadmin/scripts/setup.php",
                 "searchString": "phpMyAdmin",
@@ -70,7 +79,7 @@ $("#addDemoRules").click(function () {
 	    {
                 "name": "phpMyAdmin Setup (alt. name 2)",
                 "uid": Math.floor(Math.random() * 16777215).toString(16),
-                "enabled": true,
+                "enabled": false,
                 "description": "Accessible phpMyAdmin setup page (alt. name)",
                 "url": "phpma/scripts/setup.php",
                 "searchString": "phpMyAdmin",
@@ -79,7 +88,7 @@ $("#addDemoRules").click(function () {
             {
                 "name": "phpMyAdmin Setup (alt. name 3)",
                 "uid": Math.floor(Math.random() * 16777215).toString(16),
-                "enabled": true,
+                "enabled": false,
                 "description": "Accessible phpMyAdmin setup page (alt. name)",
                 "url": "admin/scripts/setup.php",
                 "searchString": "phpMyAdmin",
@@ -88,7 +97,7 @@ $("#addDemoRules").click(function () {
             {
                 "name": "phpMyAdmin Setup (alt. name 4)",
                 "uid": Math.floor(Math.random() * 16777215).toString(16),
-                "enabled": true,
+                "enabled": false,
                 "description": "Accessible phpMyAdmin setup page (alt. name)",
                 "url": "db/scripts/setup.php",
                 "searchString": "phpMyAdmin",
@@ -97,7 +106,7 @@ $("#addDemoRules").click(function () {
             {
                 "name": "TimThumb 1",
                 "uid": Math.floor(Math.random() * 16777215).toString(16),
-                "enabled": true,
+                "enabled": false,
                 "description": "TimThumb",
                 "url": "timthumb.php",
                 "searchString": "TimThumb",
@@ -106,7 +115,7 @@ $("#addDemoRules").click(function () {
             {
                 "name": "TimThumb 2",
                 "uid": Math.floor(Math.random() * 16777215).toString(16),
-                "enabled": true,
+                "enabled": false,
                 "description": "TimThumb",
                 "url": "thumb.php",
                 "searchString": "TimThumb",
@@ -124,7 +133,7 @@ $("#addDemoRules").click(function () {
 	    {
                 "name": "Unix /etc/passwd 2",
                 "uid": Math.floor(Math.random() * 16777215).toString(16),
-                "enabled": true,
+                "enabled": false,
                 "description": "Web accessible /etc/password file (URL encoded)",
                 "url": "%2e%2e%2f%2e%2e%2f%2e%2e%2f%2e%2e%2f%2e%2e%2f%2e%2e%2fetc%2fpasswd",
                 "searchString": ":",
