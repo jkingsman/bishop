@@ -11,7 +11,7 @@ $("#addDemoRules").click(function () {
                 "description": "Find publicly accessible .git repos",
                 "url": ".git/HEAD",
                 "searchString": "ref: (refs|[0-9a-fA-F]+)",
-                "risk": "medium"
+                "risk": "low"
             },
             {
                 "name": "Git Repo (Indexable)",
@@ -29,7 +29,7 @@ $("#addDemoRules").click(function () {
                 "description": "Find publicly accessible SVN dirs",
                 "url": ".svn/entries",
                 "searchString": "svn:",
-                "risk": "medium"
+                "risk": "low"
             },
             {
                 "name": "SVN Repo (Indexable)",
@@ -47,7 +47,7 @@ $("#addDemoRules").click(function () {
                 "description": "Find JS eval's that concatenate",
                 "url": "",
                 "searchString": "eval(\s|)\\((\"|').*(\"|')(\s|)\+", //note that the double quotes in this are escaped; the original regex is eval(\s|)\(("|').*("|')(\s|)\+
-                "risk": "medium"
+                "risk": "low"
             },
 	    {
                 "name": "Web Accessible php.exe",
@@ -74,6 +74,15 @@ $("#addDemoRules").click(function () {
                 "description": "Find Outlook Web Access log ins",
                 "url": "owa",
                 "searchString": "Connected to Microsoft Exchange",
+                "risk": "low"
+            },
+	    {
+                "name": "Indexable cgi-bin",
+                "uid": Math.floor(Math.random() * 16777215).toString(16),
+                "enabled": true,
+                "description": "Find directory listed cgi-bin's",
+                "url": "cgi-bin",
+                "searchString": "Index(.|\n)*modified",
                 "risk": "medium"
             },
 	    {
@@ -122,12 +131,21 @@ $("#addDemoRules").click(function () {
                 "risk": "medium"
             },
             {
-                "name": "TimThumb 1",
+                "name": "TimThumb",
                 "uid": Math.floor(Math.random() * 16777215).toString(16),
                 "enabled": true,
-                "description": "TimThumb",
+                "description": "TimThumb thumbnail generators; may be vulnerable depending on version",
                 "url": "timthumb.php",
                 "searchString": "TimThumb",
+                "risk": "medium"
+            },
+            {
+                "name": "Cricket",
+                "uid": Math.floor(Math.random() * 16777215).toString(16),
+                "enabled": true,
+                "description": "Find Cricket network statistics aggregators",
+                "url": "/cgi-bin/cricket/grapher.cgi",
+                "searchString": "Cricket network statistics",
                 "risk": "medium"
             }
         ];
