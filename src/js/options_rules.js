@@ -69,11 +69,6 @@ $("#addRule").click(function () {
 
 //pops up a modal where we can build a new rule
 $("#saveRule").click(function () {
-    if (!$("#addRuleForm")[0].checkValidity()) {
-        alert("Please fill in at least an URL and a Name.");
-        return;
-    }
-
     chrome.storage.sync.get(null, function (data) {
         rules = data.rules;
 
