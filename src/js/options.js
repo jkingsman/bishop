@@ -15,6 +15,7 @@ function buildPage() {
         chrome.storage.sync.set({
             'seenSites': data.sites.length
         });
+	
         config = data.config;
         sites = data.sites;
         enabled = data.status;
@@ -35,9 +36,6 @@ function buildPage() {
         if (!enabled) {
             showNotification("danger", "Get Git is currently disabled.")
         }
-
-        populateSiteTable();
-        populateRuleTable();
     });
 }
 
