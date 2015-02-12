@@ -16,15 +16,15 @@ function init_main() {
             var isEnabled = 1;
         }
         else {
-            var isEnabled = parseInt(data.status);
+            var isEnabled = data.status;
         }
 
         //make the switch reflect our current state
         if (isEnabled) {
-            $("#status").prop("checked", true);
+            $("#status").html('<span class="bg-success">Enabled</span>');
         }
         else {
-            $("#status").prop("checked", false);
+            $("#status").html('<span class="bg-danger">Disabled</span>');
         }
     });
 
@@ -37,17 +37,3 @@ function init_main() {
 
 //bind events to dom elements
 document.addEventListener('DOMContentLoaded', init_main);
-
-//handle enabling or disabling or the extension
-$('#status').change(function () {
-    if ($("#status").prop("checked")) {
-        chrome.storage.sync.set({
-            "status": 1
-        });
-    }
-    else {
-        chrome.storage.sync.set({
-            "status": 0
-        });
-    }
-});
