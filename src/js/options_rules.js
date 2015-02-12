@@ -44,7 +44,6 @@ $("#deleteAllRules").click(function () {
         chrome.storage.sync.set({
             "rules": []
         }, function() {
-            populateRuleTable();
             showNotification("success", "Rule list cleared.");
         });
     }
@@ -94,7 +93,6 @@ $("#saveRule").click(function () {
         }, function(){
 	    $('#addRuleModal').modal('hide');
 	    showNotification("success", "Rule added.");
-	    populateRuleTable();
             $("#addRuleForm")[0].reset();
 	});
     });
@@ -119,8 +117,6 @@ $(document.body).on("click", "[id^=delRule]", function () {
         chrome.storage.sync.set({
             "rules": rules
         }, function(){
-	    //redraw
-	    populateRuleTable();
 	    showNotification("warning", "Rule deleted.");
 	});
     });
