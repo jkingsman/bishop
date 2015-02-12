@@ -8,7 +8,7 @@ chrome.storage.sync.get(null, function (data) {
             alertFound: false,
             alertCSSFound: true,
 	    xhrDelay: 5,
-	    exclusionList: "google.com::facebook.com"
+	    exclusionList: "google.com::facebook.com::reddit.com" //high traffic sites with either lots of false positives or definitely no weakness that this would catch
         };
 
         //default site and rule list (empty)
