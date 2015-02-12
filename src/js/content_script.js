@@ -54,7 +54,7 @@ function scanURL(url) {
         var rule = rules[i];
 
         if (rule.enabled) {
-            if (upAndHas(url + "/" + rule.url, rule.searchString)) {
+            if (upAndMatch(url + "/" + rule.url, rule.searchString)) {
                 addSiteAndAlert(url, rule.name);
             }
         }
@@ -80,7 +80,7 @@ function addSiteAndAlert(url, rule) {
 
         //push the current URL onto the array
         sites.push({
-            "uid": Math.floor(Math.random() * 16777215).toString(16),
+            "uid": Math.floor(Math.random() * 99999999).toString(16),
             "url": url,
             "rule": rule
         });
@@ -140,21 +140,23 @@ function nextParent(url) {
     }
 }
 
-//returns true if the url responds 200 and the responsebody contains string
+//returns true if the url responds 200 and the responsebody matches the regex
 //use to just check for 200
-
-
-function upAndHas(url, string) {
+function upAndMatch(url, regex) {
     var req = new XMLHttpRequest();
+    var pattern = new RegExp(regex);
+    
     req.open('GET', url, false);
     req.send();
 
     if (req.status == 200) {
-        if (req.responseText.indexOf(string) > -1) {
+        if (pattern.test(req.responseText)) {
             return true;
         }
         return false;
     }
+    
+    return false;
 }
 
 function stripTrailingSlash(url) {
