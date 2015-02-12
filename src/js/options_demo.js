@@ -59,6 +59,15 @@ $("#addDemoRules").click(function () {
                 "risk": "medium"
             },
 	    {
+                "name": "Web Accessible php.exe 2",
+                "uid": Math.floor(Math.random() * 16777215).toString(16),
+                "enabled": true,
+                "description": "Finds directory listings that include php.exe",
+                "url": "php5",
+                "searchString": "Index(.|\n)*modified(.|\n)*php\.exe",
+                "risk": "medium"
+            },
+	    {
                 "name": "OWA Login",
                 "uid": Math.floor(Math.random() * 16777215).toString(16),
                 "enabled": true,
@@ -88,7 +97,7 @@ $("#addDemoRules").click(function () {
             {
                 "name": "Typo3 phpMyAdmin Setup",
                 "uid": Math.floor(Math.random() * 16777215).toString(16),
-                "enabled": false,
+                "enabled": true,
                 "description": "Accessible phpMyAdmin setup page on Typo3",
                 "url": "typo3/phpmyadmin/scripts/setup.php",
                 "searchString": "You want to configure phpMyAdmin",
@@ -97,82 +106,28 @@ $("#addDemoRules").click(function () {
             {
                 "name": "phpMyAdmin Setup (alt. name 1)",
                 "uid": Math.floor(Math.random() * 16777215).toString(16),
-                "enabled": false,
+                "enabled": true,
                 "description": "Accessible phpMyAdmin setup page (alt. name)",
-                "url": "phpadmin/scripts/setup.php",
+                "url": "php/scripts/setup.php",
                 "searchString": "You want to configure phpMyAdmin",
                 "risk": "medium"
             },
 	    {
                 "name": "phpMyAdmin Setup (alt. name 2)",
                 "uid": Math.floor(Math.random() * 16777215).toString(16),
-                "enabled": false,
+                "enabled": true,
                 "description": "Accessible phpMyAdmin setup page (alt. name)",
                 "url": "phpma/scripts/setup.php",
                 "searchString": "You want to configure phpMyAdmin",
                 "risk": "medium"
             },
             {
-                "name": "phpMyAdmin Setup (alt. name 3)",
-                "uid": Math.floor(Math.random() * 16777215).toString(16),
-                "enabled": false,
-                "description": "Accessible phpMyAdmin setup page (alt. name)",
-                "url": "admin/scripts/setup.php",
-                "searchString": "You want to configure phpMyAdmin",
-                "risk": "medium"
-            },
-            {
-                "name": "phpMyAdmin Setup (alt. name 4)",
-                "uid": Math.floor(Math.random() * 16777215).toString(16),
-                "enabled": false,
-                "description": "Accessible phpMyAdmin setup page (alt. name)",
-                "url": "db/scripts/setup.php",
-                "searchString": "You want to configure phpMyAdmin",
-                "risk": "medium"
-            },
-            {
                 "name": "TimThumb 1",
                 "uid": Math.floor(Math.random() * 16777215).toString(16),
-                "enabled": false,
+                "enabled": true,
                 "description": "TimThumb",
                 "url": "timthumb.php",
                 "searchString": "TimThumb",
-                "risk": "medium"
-            },
-            {
-                "name": "TimThumb 2",
-                "uid": Math.floor(Math.random() * 16777215).toString(16),
-                "enabled": false,
-                "description": "TimThumb",
-                "url": "thumb.php",
-                "searchString": "TimThumb",
-                "risk": "medium"
-            },
-            {
-                "name": "Unix /etc/passwd",
-                "uid": Math.floor(Math.random() * 16777215).toString(16),
-                "enabled": false,
-                "description": "Web accessible /etc/password file (doesn't work with XHR; disabled by default)",
-                "url": "../../../../../../../../etc/passwd",
-                "searchString": ":",
-                "risk": "high"
-            },
-            {
-                "name": "Unix /etc/shadow",
-                "uid": Math.floor(Math.random() * 16777215).toString(16),
-                "enabled": false,
-                "description": "Web accessible /etc/shadow file (doesn't work with XHR; disabled by default)",
-                "url": "../../../../../../../../etc/shadow",
-                "searchString": ":",
-                "risk": "high"
-            },
-            {
-                "name": "Cisco/Linksys tmUnblock.cgi",
-                "uid": Math.floor(Math.random() * 16777215).toString(16),
-                "enabled": false,
-                "description": "Exploitable router control file (no string to search for so too many false positives; disabled by default)",
-                "url": "Cisco/Linksys tmUnblock.cgi",
-                "searchString": "",
                 "risk": "medium"
             }
         ];
