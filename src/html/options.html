@@ -25,7 +25,7 @@
             			<li><a href="#" id="dedupSites">Remove Duplicate Sites</a></li>
             		    </ul>
             		</div>
-                <button id="exportSites" class="btn btn-sm btn-primary pull-right"><i class="glyphicon glyphicon-share-alt"></i> Export Vulnerable Sites</button>
+                <button id="exportSites" class="btn btn-sm btn-primary pull-right"><i class="glyphicon glyphicon-share-alt"></i> Import/Export Vulnerable Sites</button>
                 <div class="clearfix"></div>
                 <div style="height: 200px; overflow: auto;">
                     <table class="table table-striped" id="siteTable">
@@ -174,12 +174,13 @@
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
                     </button>
-                    <h4 class="modal-title" id="exportDataLabel">Export Vulnerable Sites</h4>
+                    <h4 class="modal-title" id="exportDataLabel">Import/Export Vulnerable Sites</h4>
                 </div>
                 <div class="modal-body">
-                    <textarea id="exportBox" style="-webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: order-box; width: 100%;" rows=30></textarea>
+                    <textarea id="exportBox" style="-webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: order-box; width: 100%;" rows=15></textarea>
                 </div>
                 <div class="modal-footer">
+                    <button type="button" class="btn btn-success pull-left" id="importSites">Import</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>

@@ -41,6 +41,27 @@ $("#exportSites").click(function () {
     });
 });
 
+//pops up a modal with the JSON of the vulnerable sites in it
+$("#importSites").click(function () {
+    var importData, site;
+    var confirmed = confirm("This will delete all import the current contents of the textarea; badly formed data will cause problems. Please reference the export format for the correct import format.");
+    if (confirmed) {
+        importData = jQuery.parseJSON($("#exportBox").val());
+        chrome.storage.sync.get(null, function (data) {
+          for (var i = 0; i < importData.length; i++) {
+              site = importData[i];
+              data.sites.push(site);
+          }
+          chrome.storage.sync.set({
+            'sites': data.sites
+          }, function () {
+              showNotification("success", "Sites loaded. You may need to deduplicate.");
+              $('#exportDataModal').modal('hide');
+          });
+        });
+    }
+});
+
 //deduplicates site list
 $("#dedupSites").click(function () {
     chrome.storage.sync.get(null, function (data) {
