@@ -19,7 +19,7 @@ $("#addDemoRules").click(function () {
                 "enabled": true,
                 "description": "Find index-listing .git dirs",
                 "url": ".git",
-                "searchString": "Index of",
+                "searchString": "Index of(.|\n)*HEAD",
                 "risk": "low"
             },
             {
@@ -37,16 +37,43 @@ $("#addDemoRules").click(function () {
                 "enabled": true,
                 "description": "Find index listing SVN dirs",
                 "url": ".svn",
-                "searchString": "Index of",
+                "searchString": "Index(.|\n)*entries",
                 "risk": "low"
             },
             {
                 "name": "eval'ing a Variable",
                 "uid": Math.floor(Math.random() * 16777215).toString(16),
                 "enabled": true,
-                "description": "FInd JS eval's that concatenate",
-                "url": "/",
-                "searchString": "eval(\s|)\((\"|').*(\"|')(\s|)\+", //note that the double quotes in this are escaped; the original regex is eval(\s|)\(("|').*("|')(\s|)\+
+                "description": "Find JS eval's that concatenate",
+                "url": "",
+                "searchString": "eval(\s|)\\((\"|').*(\"|')(\s|)\+", //note that the double quotes in this are escaped; the original regex is eval(\s|)\(("|').*("|')(\s|)\+
+                "risk": "medium"
+            },
+	    {
+                "name": "Web Accessible php.exe",
+                "uid": Math.floor(Math.random() * 16777215).toString(16),
+                "enabled": true,
+                "description": "Finds directory listings that include php.exe",
+                "url": "",
+                "searchString": "Index(.|\n)*modified(.|\n)*php\.exe",
+                "risk": "medium"
+            },
+	    {
+                "name": "OWA Login",
+                "uid": Math.floor(Math.random() * 16777215).toString(16),
+                "enabled": true,
+                "description": "Find Outlook Web Access log ins",
+                "url": "owa",
+                "searchString": "Connected to Microsoft Exchange",
+                "risk": "medium"
+            },
+	    {
+                "name": "OWA Login 2",
+                "uid": Math.floor(Math.random() * 16777215).toString(16),
+                "enabled": true,
+                "description": "Find Outlook Web Access log ins",
+                "url": "mail",
+                "searchString": "Connected to Microsoft Exchange",
                 "risk": "medium"
             },
             {
@@ -55,7 +82,7 @@ $("#addDemoRules").click(function () {
                 "enabled": true,
                 "description": "Accessible phpMyAdmin setup page",
                 "url": "phpmyadmin/scripts/setup.php",
-                "searchString": "phpMyAdmin",
+                "searchString": "You want to configure phpMyAdmin",
                 "risk": "medium"
             },
             {
@@ -64,7 +91,7 @@ $("#addDemoRules").click(function () {
                 "enabled": false,
                 "description": "Accessible phpMyAdmin setup page on Typo3",
                 "url": "typo3/phpmyadmin/scripts/setup.php",
-                "searchString": "phpMyAdmin",
+                "searchString": "You want to configure phpMyAdmin",
                 "risk": "medium"
             },
             {
@@ -73,7 +100,7 @@ $("#addDemoRules").click(function () {
                 "enabled": false,
                 "description": "Accessible phpMyAdmin setup page (alt. name)",
                 "url": "phpadmin/scripts/setup.php",
-                "searchString": "phpMyAdmin",
+                "searchString": "You want to configure phpMyAdmin",
                 "risk": "medium"
             },
 	    {
@@ -82,7 +109,7 @@ $("#addDemoRules").click(function () {
                 "enabled": false,
                 "description": "Accessible phpMyAdmin setup page (alt. name)",
                 "url": "phpma/scripts/setup.php",
-                "searchString": "phpMyAdmin",
+                "searchString": "You want to configure phpMyAdmin",
                 "risk": "medium"
             },
             {
@@ -91,7 +118,7 @@ $("#addDemoRules").click(function () {
                 "enabled": false,
                 "description": "Accessible phpMyAdmin setup page (alt. name)",
                 "url": "admin/scripts/setup.php",
-                "searchString": "phpMyAdmin",
+                "searchString": "You want to configure phpMyAdmin",
                 "risk": "medium"
             },
             {
@@ -100,7 +127,7 @@ $("#addDemoRules").click(function () {
                 "enabled": false,
                 "description": "Accessible phpMyAdmin setup page (alt. name)",
                 "url": "db/scripts/setup.php",
-                "searchString": "phpMyAdmin",
+                "searchString": "You want to configure phpMyAdmin",
                 "risk": "medium"
             },
             {
@@ -127,15 +154,6 @@ $("#addDemoRules").click(function () {
                 "enabled": false,
                 "description": "Web accessible /etc/password file (doesn't work with XHR; disabled by default)",
                 "url": "../../../../../../../../etc/passwd",
-                "searchString": ":",
-                "risk": "high"
-            },
-	    {
-                "name": "Unix /etc/passwd 2",
-                "uid": Math.floor(Math.random() * 16777215).toString(16),
-                "enabled": false,
-                "description": "Web accessible /etc/password file (URL encoded)",
-                "url": "%2e%2e%2f%2e%2e%2f%2e%2e%2f%2e%2e%2f%2e%2e%2f%2e%2e%2fetc%2fpasswd",
                 "searchString": ":",
                 "risk": "high"
             },
