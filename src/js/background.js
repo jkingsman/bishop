@@ -7,7 +7,7 @@ chrome.storage.sync.get(null, function (data) {
             soundFound: true,
             alertFound: false,
             alertCSSFound: true,
-	    xhrDelay: true,
+	    xhrDelay: 5,
 	    exclusionList: "google.com::facebook.com"
         };
 

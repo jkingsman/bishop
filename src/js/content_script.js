@@ -1,26 +1,21 @@
-//make this a global wince we're going to be accessing it a lot
+//make this a global since we're going to be accessing it a lot
 var rules, config;
+
+//I hate polluting global scope but this is the easiest way to handle different functions needing to know what timeout we're at
+var delay = 0;
 
 //the meat of the content script
 chrome.storage.sync.get(null, function (data) {
     rules = data.rules;
     config = data.config;
     if (data.status) {
-        if (config.xhrDelay) {
-            setTimeout(function () {
-                doScan(config.recursive);
-            }, 5000);
-        } else {
-            doScan(config.recursive);
-        }
+	//we're enabled; pull the trigger
+	doScan(config.recursive);        
     }
 });
 
 //recurse through the directories and perform the scans
-
-
 function doScan(recursive) {
-    //the extension is enabled
     var currentScanUrl = stripTrailingSlash(window.location.href);
 
     if (config.exclusionList.length > 0) {
@@ -28,7 +23,7 @@ function doScan(recursive) {
         var excludes = config.exclusionList.split("::");
         for (var i = 0; i < excludes.length; i++) {
             if (currentScanUrl.indexOf(excludes[i]) > -1 && excludes[i].length > 0) {
-                //this page contains a blocked url string and it's not an empty string; get outta here
+                //this page URL contains a blocked url string and it's not an empty string; get outta here
                 return;
             }
         }
@@ -37,7 +32,10 @@ function doScan(recursive) {
     if (recursive) {
         //keep processing URLs, including the current one and all parents, until we can't anymore
         while (currentScanUrl != -1) {
-            scanURL(currentScanUrl);
+	    //scan the URL with all our rules
+	    scanURL(currentScanUrl);	    
+            
+	    //go to the next child url
             currentScanUrl = nextParent(currentScanUrl);
         }
     } else {
@@ -47,23 +45,17 @@ function doScan(recursive) {
 }
 
 //scan a given URL with all of our rules
-
-
 function scanURL(url) {
     for (var i = 0; i < rules.length; i++) {
+	delay += (config.xhrDelay * 1000);
         var rule = rules[i];
-
         if (rule.enabled) {
-            if (upAndMatch(url + "/" + rule.url, rule.searchString)) {
-                addSiteAndAlert(url, rule.name);
-            }
+            setTimeout(upAndMatch, delay, url + "/" + rule.url, rule.searchString, rule.name);
         }
     }
 }
 
 //add a site onto the sites list and alert the user
-
-
 function addSiteAndAlert(url, rule) {
     var sites;
     //pull our site list out of storage
@@ -118,12 +110,11 @@ function addSiteAndAlert(url, rule) {
     });
 }
 
-//strip the trailing slash if there is one
-//returns the next parent URL, or -1 if there is none
-//e.g. nextParent("http://exmaple.com/dir/file.html") returns "http://exmaple.com/dir".
-//e.g. nextParent("http://exmaple.com/") returns -1.
-
-
+/* strip the trailing slash if there is one
+ * returns the next parent URL, or -1 if there is none
+ * e.g. nextParent("http://exmaple.com/dir/file.html") returns "http://exmaple.com/dir".
+ * e.g. nextParent("http://exmaple.com/") returns -1.
+ */
 function nextParent(url) {
     //sanitize so that the last occurence of the slash isn't a terminating slash
     stripTrailingSlash(url);
@@ -142,7 +133,7 @@ function nextParent(url) {
 
 //returns true if the url responds 200 and the responsebody matches the regex
 //use to just check for 200
-function upAndMatch(url, regex) {
+function upAndMatch(url, regex, ruleName) {
     var req = new XMLHttpRequest();
     var pattern = new RegExp(regex);
     
@@ -151,11 +142,10 @@ function upAndMatch(url, regex) {
 
     if (req.status == 200) {
         if (pattern.test(req.responseText)) {
-            return true;
+            addSiteAndAlert(url, ruleName)
         }
         return false;
     }
-    
     return false;
 }
 

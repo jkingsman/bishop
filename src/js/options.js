@@ -28,7 +28,7 @@ function buildPage() {
         $("#alertFound").prop("checked", config.alertFound);
         $("#alertCSSFound").prop("checked", config.alertCSSFound);
 
-	$("#xhrDelay").prop("checked", config.xhrDelay);
+	$("#xhrDelay").val(config.xhrDelay);
 	$("#exclusionList").val(config.exclusionList);
 
         //be loud if it's disabled
@@ -62,7 +62,8 @@ $("[name^=config]").on('change keyup paste', function(){
         alertFound: $("#alertFound").prop("checked"),
         alertCSSFound: $("#alertCSSFound").prop("checked"),
 
-	xhrDelay: $("#xhrDelay").prop("checked"),
+	xhrDelay: $("#xhrDelay").val(),
+	
 	exclusionList: $("#exclusionList").val()
 
     };
