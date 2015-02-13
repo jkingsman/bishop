@@ -33,9 +33,13 @@ function buildPage() {
 	$("#xhrDelay").val(config.xhrDelay);
 	$("#exclusionList").val(config.exclusionList);
 	
-	populateRuleTable();
-	populateSiteTable();
-	populateQueueTable();
+	//set a delay so we don't cause issues on the first draw
+	setTimeout(function(){
+	    populateRuleTable();
+	    populateSiteTable();
+	    populateQueueTable();
+	}, 500)
+	
 
         //be loud if it's disabled
         if (!enabled) {
