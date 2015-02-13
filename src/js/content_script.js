@@ -12,11 +12,15 @@ chrome.storage.sync.get(null, function (data) {
     queue = data.queue;
 
     if (data.status && typeof isCSEmbedded === "undefined") { // lets us define a variable so we can include this in options without running a sweep, but we still get the functions
-	//we're enabled; pull the trigger
-	doScan(stripTrailingSlash(window.location.href), config.recursive);
+        //we're enabled; pull the trigger
+        doScan(stripTrailingSlash(window.location.href), config.recursive);
     } else if (config.enableQueue && typeof isCSEmbedded === "undefined") {
-	queue.push({"url": stripTrailingSlash(window.location.href)});
-	chrome.storage.sync.set({'queue': queue});
+        queue.push({
+            "url": stripTrailingSlash(window.location.href)
+        });
+        chrome.storage.sync.set({
+            'queue': queue
+        });
     }
 });
 
@@ -36,10 +40,10 @@ function doScan(currentScanUrl, recursive) {
     if (recursive) {
         //keep processing URLs, including the current one and all parents, until we can't anymore
         while (currentScanUrl != -1) {
-	    //scan the URL with all our rules
-	    scanURL(currentScanUrl);	    
-            
-	    //go to the next child url
+            //scan the URL with all our rules
+            scanURL(currentScanUrl);
+
+            //go to the next child url
             currentScanUrl = nextParent(currentScanUrl);
         }
     } else {
@@ -51,7 +55,7 @@ function doScan(currentScanUrl, recursive) {
 //scan a given URL with all of our rules
 function scanURL(url) {
     for (var i = 0; i < rules.length; i++) {
-	delay += (config.xhrDelay * 1000);
+        delay += (config.xhrDelay * 1000);
         var rule = rules[i];
         if (rule.enabled) {
             setTimeout(upAndMatch, delay, url + "/" + rule.url, rule.searchString, rule.name);
@@ -140,7 +144,7 @@ function nextParent(url) {
 function upAndMatch(url, regex, ruleName) {
     var req = new XMLHttpRequest();
     var pattern = new RegExp(regex);
-    
+
     req.open('GET', url, false);
     req.send();
 

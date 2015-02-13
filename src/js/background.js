@@ -7,9 +7,9 @@ chrome.storage.sync.get(null, function (data) {
             soundFound: true,
             alertFound: false,
             alertCSSFound: true,
-	    xhrDelay: 5,
-	    enableQueue: false,
-	    exclusionList: "google.com::facebook.com::reddit.com::chrome-extension" //high traffic sites with either lots of false positives or definitely no weakness that this would catch
+            xhrDelay: 5,
+            enableQueue: false,
+            exclusionList: "google.com::facebook.com::reddit.com::chrome-extension" //high traffic sites with either lots of false positives or definitely no weakness that this would catch
         };
 
         //only create a new sites if we don't have it yet; don't want to overwrite people's on update
@@ -25,8 +25,8 @@ chrome.storage.sync.get(null, function (data) {
                 "rules": [],
             });
         }
-	
-	//only init the queue if it's not already
+
+        //only init the queue if it's not already
         if (typeof data.queue === "undefined") {
             chrome.storage.sync.set({
                 "queue": [],
@@ -51,8 +51,7 @@ setInterval(function () {
             chrome.browserAction.setBadgeText({
                 text: newCount.toString()
             });
-        }
-        else {
+        } else {
             chrome.browserAction.setBadgeText({
                 text: ""
             });

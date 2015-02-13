@@ -48,16 +48,16 @@ $("#importSites").click(function () {
     if (confirmed) {
         importData = jQuery.parseJSON($("#exportBox").val());
         chrome.storage.sync.get(null, function (data) {
-          for (var i = 0; i < importData.length; i++) {
-              site = importData[i];
-              data.sites.push(site);
-          }
-          chrome.storage.sync.set({
-            'sites': data.sites
-          }, function () {
-              showNotification("success", "Sites loaded. You may need to deduplicate.");
-              $('#exportDataModal').modal('hide');
-          });
+            for (var i = 0; i < importData.length; i++) {
+                site = importData[i];
+                data.sites.push(site);
+            }
+            chrome.storage.sync.set({
+                'sites': data.sites
+            }, function () {
+                showNotification("success", "Sites loaded. You may need to deduplicate.");
+                $('#exportDataModal').modal('hide');
+            });
         });
     }
 });

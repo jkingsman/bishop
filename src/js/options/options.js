@@ -15,7 +15,7 @@ function buildPage() {
         chrome.storage.sync.set({
             'seenSites': data.sites.length
         });
-	
+
         config = data.config;
         sites = data.sites;
         enabled = data.status;
@@ -28,18 +28,18 @@ function buildPage() {
         $("#alertFound").prop("checked", config.alertFound);
         $("#alertCSSFound").prop("checked", config.alertCSSFound);
 
-	$("#enableQueue").prop("checked", config.enableQueue);
-	
-	$("#xhrDelay").val(config.xhrDelay);
-	$("#exclusionList").val(config.exclusionList);
-	
-	//set a delay so we don't cause issues on the first draw
-	setTimeout(function(){
-	    populateRuleTable();
-	    populateSiteTable();
-	    populateQueueTable();
-	}, 500)
-	
+        $("#enableQueue").prop("checked", config.enableQueue);
+
+        $("#xhrDelay").val(config.xhrDelay);
+        $("#exclusionList").val(config.exclusionList);
+
+        //set a delay so we don't cause issues on the first draw
+        setTimeout(function () {
+            populateRuleTable();
+            populateSiteTable();
+            populateQueueTable();
+        }, 500)
+
 
         //be loud if it's disabled
         if (!enabled) {
@@ -53,14 +53,16 @@ function buildPage() {
 //message is the message to display
 //time is the amount of time it should be visible in seconds; set 0 for indefinitely
 function showNotification(type, message) {
-    $.growl(message, {type: type});
+    $.growl(message, {
+        type: type
+    });
 }
 
 /*
  * Begin Event Listeners
  */
 
-$("[name^=config]").on('change keyup paste', function(){
+$("[name^=config]").on('change keyup paste', function () {
     //build out an array of config options
     var config = {
         recursive: $("#recursive").prop("checked"),
@@ -69,10 +71,10 @@ $("[name^=config]").on('change keyup paste', function(){
         alertFound: $("#alertFound").prop("checked"),
         alertCSSFound: $("#alertCSSFound").prop("checked"),
 
-	enableQueue: $("#enableQueue").prop("checked"),
-	
-	xhrDelay: $("#xhrDelay").val(),
-	exclusionList: $("#exclusionList").val()
+        enableQueue: $("#enableQueue").prop("checked"),
+
+        xhrDelay: $("#xhrDelay").val(),
+        exclusionList: $("#exclusionList").val()
 
     };
 
@@ -103,7 +105,7 @@ $("#demoCSSAlert").click(function () {
 });
 
 //get live updates when something changes
-chrome.storage.onChanged.addListener(function(changes, namespace) {
+chrome.storage.onChanged.addListener(function (changes, namespace) {
     populateRuleTable();
     populateSiteTable();
     populateQueueTable();

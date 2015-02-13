@@ -1,32 +1,35 @@
 function populateRuleTable() {
     var rule, riskClass, riskText;
-    var totalCount = 0, activeCount = 0;
-    
+    var totalCount = 0,
+        activeCount = 0;
+
     $('#rulesTableBody').empty();
     chrome.storage.sync.get(null, function (data) {
         //populate the table
         for (var i = 0; i < data.rules.length; i++) {
             rule = data.rules[i];
-	    
-	    totalCount++;
-	    if(rule.enabled){activeCount++;}
 
-            switch(rule.risk) {
-                case "low":
-                    riskClass = "bg-success";
-                    riskText = "Low";
-                    break;
-                case "medium":
-                    riskClass = "bg-warning";
-                    riskText = "Medium";
-                    break;
-                case "high":
-                    riskClass = "bg-danger";
-                    riskText = "High";
-                    break;
-                default:
-                    riskClass = "bg-primary";
-                    riskText = "Unspecified";
+            totalCount++;
+            if (rule.enabled) {
+                activeCount++;
+            }
+
+            switch (rule.risk) {
+            case "low":
+                riskClass = "bg-success";
+                riskText = "Low";
+                break;
+            case "medium":
+                riskClass = "bg-warning";
+                riskText = "Medium";
+                break;
+            case "high":
+                riskClass = "bg-danger";
+                riskText = "High";
+                break;
+            default:
+                riskClass = "bg-primary";
+                riskText = "Unspecified";
             };
 
             //append the URL to the table
@@ -36,9 +39,9 @@ function populateRuleTable() {
         //check or uncheck as appropriate
         handleCheckboxes(data.rules);
 
-	//set our counts
-	$('#ruleCount').html("(" + activeCount + " of " + totalCount + " rules enabled; " + (activeCount * data.config.xhrDelay) +  " seconds to process all)");
-	
+        //set our counts
+        $('#ruleCount').html("(" + activeCount + " of " + totalCount + " rules enabled; " + (activeCount * data.config.xhrDelay) + " seconds to process all)");
+
         //let the user know if we don't have any sites stored
         if (data.rules.length < 1) {
             $('#rulesTableBody').append('<tr><td colspan=7>No rules added yet!</td></tr>');
@@ -52,7 +55,7 @@ $("#deleteAllRules").click(function () {
     if (confirmed) {
         chrome.storage.sync.set({
             "rules": []
-        }, function() {
+        }, function () {
             showNotification("success", "Rule list cleared.");
         });
     }
@@ -65,7 +68,7 @@ function handleCheckboxes(rules) {
         var rule = rules[i];
         if (rule.enabled) {
             $("#ruleEnabled" + rule.uid).prop("checked", true);
-        } else{
+        } else {
             $("#ruleEnabled" + rule.uid).prop("checked", false);
         }
     }
@@ -92,13 +95,13 @@ $("#saveRule").click(function () {
             "risk": $('input[name=risk]:checked').val()
         });
 
-	chrome.storage.sync.set({
+        chrome.storage.sync.set({
             'rules': rules
-        }, function(){
-	    $('#addRuleModal').modal('hide');
-	    showNotification("success", "Rule added.");
+        }, function () {
+            $('#addRuleModal').modal('hide');
+            showNotification("success", "Rule added.");
             $("#addRuleForm")[0].reset();
-	});
+        });
     });
 });
 
@@ -120,9 +123,9 @@ $(document.body).on("click", "[id^=delRule]", function () {
 
         chrome.storage.sync.set({
             "rules": rules
-        }, function(){
-	    showNotification("warning", "Rule deleted.");
-	});
+        }, function () {
+            showNotification("warning", "Rule deleted.");
+        });
     });
 });
 
@@ -143,9 +146,9 @@ $(document.body).on("click", "[id^=ruleEnabled]", function () {
 
         chrome.storage.sync.set({
             "rules": rules
-        }, function(){
-	    showNotification("success", "Rule status changed.");
-	});
+        }, function () {
+            showNotification("success", "Rule status changed.");
+        });
     });
 });
 
@@ -153,48 +156,48 @@ $(document.body).on("click", "[id^=ruleEnabled]", function () {
 $(document.body).on("click", "[id^=bulkEnable]", function () {
     var selector = this.id.replace(/bulkEnable/g, '');
 
-     chrome.storage.sync.get(null, function (data) {
+    chrome.storage.sync.get(null, function (data) {
         rules = data.rules;
 
-        switch(selector) {
-            case "All":
-                for (var i = 0; i < rules.length; i++) {
-                    var rule = rules[i];
+        switch (selector) {
+        case "All":
+            for (var i = 0; i < rules.length; i++) {
+                var rule = rules[i];
+                rules[i].enabled = true;
+            }
+            break;
+        case "Low":
+            for (var i = 0; i < rules.length; i++) {
+                var rule = rules[i];
+                if (rules[i].risk == "low") {
                     rules[i].enabled = true;
                 }
-                break;
-            case "Low":
-                for (var i = 0; i < rules.length; i++) {
-                    var rule = rules[i];
-                    if (rules[i].risk == "low") {
-                        rules[i].enabled = true;
-                    }
+            }
+            break;
+        case "Medium":
+            for (var i = 0; i < rules.length; i++) {
+                var rule = rules[i];
+                if (rules[i].risk == "medium") {
+                    rules[i].enabled = true;
                 }
-                break;
-            case "Medium":
-                for (var i = 0; i < rules.length; i++) {
-                    var rule = rules[i];
-                    if (rules[i].risk == "medium") {
-                        rules[i].enabled = true;
-                    }
+            }
+            break;
+        case "High":
+            for (var i = 0; i < rules.length; i++) {
+                var rule = rules[i];
+                if (rules[i].risk == "high") {
+                    rules[i].enabled = true;
                 }
-                break;
-            case "High":
-                for (var i = 0; i < rules.length; i++) {
-                    var rule = rules[i];
-                    if (rules[i].risk == "high") {
-                        rules[i].enabled = true;
-                    }
-                }
-                break;
+            }
+            break;
         };
 
         chrome.storage.sync.set({
             "rules": rules
-        }, function(){
+        }, function () {
             handleCheckboxes(data.rules);
-	    showNotification("success", "Rule status changed.");
-	});
+            showNotification("success", "Rule status changed.");
+        });
 
     });
 });
@@ -203,48 +206,48 @@ $(document.body).on("click", "[id^=bulkEnable]", function () {
 $(document.body).on("click", "[id^=bulkDisable]", function () {
     var selector = this.id.replace(/bulkDisable/g, '');
 
-     chrome.storage.sync.get(null, function (data) {
+    chrome.storage.sync.get(null, function (data) {
         rules = data.rules;
 
-        switch(selector) {
-            case "All":
-                for (var i = 0; i < rules.length; i++) {
-                    var rule = rules[i];
+        switch (selector) {
+        case "All":
+            for (var i = 0; i < rules.length; i++) {
+                var rule = rules[i];
+                rules[i].enabled = false;
+            }
+            break;
+        case "Low":
+            for (var i = 0; i < rules.length; i++) {
+                var rule = rules[i];
+                if (rules[i].risk == "low") {
                     rules[i].enabled = false;
                 }
-                break;
-            case "Low":
-                for (var i = 0; i < rules.length; i++) {
-                    var rule = rules[i];
-                    if (rules[i].risk == "low") {
-                        rules[i].enabled = false;
-                    }
+            }
+            break;
+        case "Medium":
+            for (var i = 0; i < rules.length; i++) {
+                var rule = rules[i];
+                if (rules[i].risk == "medium") {
+                    rules[i].enabled = false;
                 }
-                break;
-            case "Medium":
-                for (var i = 0; i < rules.length; i++) {
-                    var rule = rules[i];
-                    if (rules[i].risk == "medium") {
-                        rules[i].enabled = false;
-                    }
+            }
+            break;
+        case "High":
+            for (var i = 0; i < rules.length; i++) {
+                var rule = rules[i];
+                if (rules[i].risk == "high") {
+                    rules[i].enabled = false;
                 }
-                break;
-            case "High":
-                for (var i = 0; i < rules.length; i++) {
-                    var rule = rules[i];
-                    if (rules[i].risk == "high") {
-                        rules[i].enabled = false;
-                    }
-                }
-                break;
+            }
+            break;
         };
 
         chrome.storage.sync.set({
             "rules": rules
-        }, function(){
+        }, function () {
             handleCheckboxes(data.rules);
-	    showNotification("success", "Rule status changed.");
-	});
+            showNotification("success", "Rule status changed.");
+        });
 
     });
 });
