@@ -28,11 +28,14 @@ function buildPage() {
         $("#alertFound").prop("checked", config.alertFound);
         $("#alertCSSFound").prop("checked", config.alertCSSFound);
 
+	$("#enableQueue").prop("checked", config.enableQueue);
+	
 	$("#xhrDelay").val(config.xhrDelay);
 	$("#exclusionList").val(config.exclusionList);
 	
 	populateRuleTable();
 	populateSiteTable();
+	populateQueueTable();
 
         //be loud if it's disabled
         if (!enabled) {
@@ -62,8 +65,9 @@ $("[name^=config]").on('change keyup paste', function(){
         alertFound: $("#alertFound").prop("checked"),
         alertCSSFound: $("#alertCSSFound").prop("checked"),
 
-	xhrDelay: $("#xhrDelay").val(),
+	enableQueue: $("#enableQueue").prop("checked"),
 	
+	xhrDelay: $("#xhrDelay").val(),
 	exclusionList: $("#exclusionList").val()
 
     };
@@ -98,6 +102,7 @@ $("#demoCSSAlert").click(function () {
 chrome.storage.onChanged.addListener(function(changes, namespace) {
     populateRuleTable();
     populateSiteTable();
+    populateQueueTable();
 });
 
 //bind events to dom elements

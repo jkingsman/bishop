@@ -15,31 +15,60 @@
         <div class="row">
             <div class="col-md-12">
                 <h3><i class="glyphicon glyphicon-screenshot"></i> Vulnerable Sites</h3>
-                <div class="btn-group">
-            		    <button type="button" class="btn btn-sm btn-warning" id="clearSites"><i class="glyphicon glyphicon-trash"></i> Clear Vulnerable Sites</button>
-            		    <button type="button" class="btn btn-sm btn-warning dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-            			<span class="caret"></span>
-            			<span class="sr-only">Toggle Dropdown</span>
-            		    </button>
-            		    <ul class="dropdown-menu" role="menu">
-            			<li><a href="#" id="dedupSites">Remove Duplicate Sites</a></li>
-            		    </ul>
-            		</div>
-                <button id="exportSites" class="btn btn-sm btn-primary pull-right"><i class="glyphicon glyphicon-transfer"></i> Import/Export Vulnerable Sites</button>
-                <div class="clearfix"></div>
-                <div style="height: 200px; overflow: auto;">
-                    <table class="table table-striped" id="siteTable">
-                        <thead>
-                            <tr>
-                                <th>Location</th>
-                                <th>Matched Rule</th>
-                                <th>Delete</th>
-                            </tr>
-                        </thead>
-                        <tbody id="siteTableBody">
-                        </tbody>
-                    </table>
-                </div>
+		<div role="tabpanel">
+		    <ul class="nav nav-tabs" role="tablist">
+			<li role="presentation" class="active"><a href="#main" aria-controls="home" role="tab" data-toggle="tab">Main</a></li>
+			<li role="presentation"><a href="#queue" aria-controls="profile" role="tab" data-toggle="tab">Queue</a></li>
+		    </ul>
+		    <div class="tab-content">
+			<br />
+			<div role="tabpanel" class="tab-pane active" id="main">
+			    <div class="btn-group">
+				<button type="button" class="btn btn-sm btn-warning" id="clearSites"><i class="glyphicon glyphicon-trash"></i> Clear Vulnerable Sites</button>
+				<button type="button" class="btn btn-sm btn-warning dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+				    <span class="caret"></span>
+				    <span class="sr-only">Toggle Dropdown</span>
+				</button>
+				<ul class="dropdown-menu" role="menu">
+				    <li><a href="#" id="dedupSites">Remove Duplicate Sites</a></li>
+				</ul>
+			    </div>
+			    <button id="exportSites" class="btn btn-sm btn-primary pull-right"><i class="glyphicon glyphicon-transfer"></i> Import/Export Vulnerable Sites</button>
+			    <div class="clearfix"></div>
+			    <div style="height: 200px; overflow: auto;">
+				<table class="table table-striped" id="siteTable">
+				    <thead>
+					<tr>
+					    <th>Location</th>
+					    <th>Matched Rule</th>
+					    <th>Delete</th>
+					</tr>
+				    </thead>
+				    <tbody id="siteTableBody">
+				    </tbody>
+				</table>
+			    </div>
+			</div>
+			<div role="tabpanel" class="tab-pane" id="queue">
+			    <p id="queueCount"></p>
+			    <button type="button" class="btn btn-sm btn-warning" id="clearQueue"><i class="glyphicon glyphicon-trash"></i> Clear Queue</button>
+			    <button type="button" class="btn btn-sm btn-primary pull-right" id="processQueue"><i class="glyphicon glyphicon-tasks"></i> Process Queue</button>
+			    <div class="clearfix"></div>
+			    <div style="height: 200px; overflow: auto;">
+				<table class="table table-striped" id="queueTable">
+				    <thead>
+					<tr>
+					    <th>URL</th>
+					</tr>
+				    </thead>
+				    <tbody id="queueTableBody">
+				    </tbody>
+				</table>
+			    </div>
+			</div>
+		    </div>
+		</div>
+
             </div>
         </div>
         <div class="row">
@@ -105,7 +134,14 @@
                         <label class="col-sm-2 control-label">Enabled</label>
                         <div class="col-sm-10">
                             <div class="checkbox">
-                                <label><input type="checkbox" id="enabled" name="config"> If unchecked, Bishop won't send any requests or test pages</label>
+                                <label><input type="checkbox" id="enabled" name="config"> Enable Bishop to send requests and test pages</label>
+                            </div>
+                        </div>
+                    </div>
+		    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <div class="checkbox">
+                                <label><input type="checkbox" id="enableQueue" name="config"> Enable Bishop to record visited sites to the queue for later testing when Bishop is disabled</label>
                             </div>
                         </div>
                     </div>
@@ -248,14 +284,18 @@
         </div>
     </div>
 
-    <script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
-    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../js/bootstrap-growl.min.js"></script>
+    <script type="text/javascript" src="../js/lib/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="../js/lib/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/lib/bootstrap-growl.min.js"></script>
 
-    <script type="text/javascript" src="../js/options_demo.js"></script>
-    <script type="text/javascript" src="../js/options_sites.js"></script>
-    <script type="text/javascript" src="../js/options_rules.js"></script>
-    <script type="text/javascript" src="../js/options.js"></script>
+    <script type="text/javascript" src="../js/dontExecuteScan.js"></script>    
+    <script type="text/javascript" src="../js/content_script.js"></script>
+    
+    <script type="text/javascript" src="../js/options/options_demo.js"></script>
+    <script type="text/javascript" src="../js/options/options_sites.js"></script>
+    <script type="text/javascript" src="../js/options/options_rules.js"></script>
+    <script type="text/javascript" src="../js/options/options_queue.js"></script>
+    <script type="text/javascript" src="../js/options/options.js"></script>
 </body>
 
 </html>

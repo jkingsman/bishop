@@ -1,5 +1,5 @@
 //make this a global since we're going to be accessing it a lot
-var rules, config;
+var rules, config, status;
 
 //I hate polluting global scope but this is the easiest way to handle different functions needing to know what timeout we're at
 var delay = 0;
@@ -8,16 +8,20 @@ var delay = 0;
 chrome.storage.sync.get(null, function (data) {
     rules = data.rules;
     config = data.config;
-    if (data.status) {
+    status = data.status;
+    queue = data.queue;
+
+    if (data.status && typeof isCSEmbedded === "undefined") { // lets us define a variable so we can include this in options without running a sweep, but we still get the functions
 	//we're enabled; pull the trigger
-	doScan(config.recursive);        
+	doScan(stripTrailingSlash(window.location.href), config.recursive);
+    } else if (config.enableQueue && typeof isCSEmbedded === "undefined") {
+	queue.push({"url": stripTrailingSlash(window.location.href)});
+	chrome.storage.sync.set({'queue': queue});
     }
 });
 
 //recurse through the directories and perform the scans
-function doScan(recursive) {
-    var currentScanUrl = stripTrailingSlash(window.location.href);
-
+function doScan(currentScanUrl, recursive) {
     if (config.exclusionList.length > 0) {
         //we have an exclusion list to work with; break it out
         var excludes = config.exclusionList.split("::");

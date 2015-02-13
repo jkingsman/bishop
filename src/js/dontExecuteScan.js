@@ -1,0 +1,1 @@
+var isCSEmbedded = true; //lets us embed the content_script and just get the functions

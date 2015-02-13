@@ -8,24 +8,28 @@ chrome.storage.sync.get(null, function (data) {
             alertFound: false,
             alertCSSFound: true,
 	    xhrDelay: 5,
-	    exclusionList: "google.com::facebook.com::reddit.com" //high traffic sites with either lots of false positives or definitely no weakness that this would catch
+	    enableQueue: false,
+	    exclusionList: "google.com::facebook.com::reddit.com::chrome-extension" //high traffic sites with either lots of false positives or definitely no weakness that this would catch
         };
 
-        //default site and rule list (empty)
-        sites = [];
-        rules = [];
-
-        //onle create a new sites if we don't have it yet; don't want to overwrite people's on update
+        //only create a new sites if we don't have it yet; don't want to overwrite people's on update
         if (typeof data.sites === "undefined") {
             chrome.storage.sync.set({
-                "sites": sites,
+                "sites": [],
             });
         }
 
-        //onle create a new rules if we don't have it yet; don't want to overwrite people's on update
+        //only create a new rules if we don't have it yet; don't want to overwrite people's on update
         if (typeof data.rules === "undefined") {
             chrome.storage.sync.set({
-                "rules": rules,
+                "rules": [],
+            });
+        }
+	
+	//only init the queue if it's not already
+        if (typeof data.queue === "undefined") {
+            chrome.storage.sync.set({
+                "queue": [],
             });
         }
 
