@@ -4,8 +4,9 @@
     "version": "0.0.0.1",
     "description": "Search websites for git repos, expose config files, and more as you browse.",
     "author": "Jack Kingsman <jack.kingsman@gmail.com>",
+    "homepage_url": "https://github.com/jkingsman/bishop",
     "background": {
-      "scripts": ["js/background.js"]
+	"scripts": ["js/background.js"]
     },
 	"browser_action":{
         "default_title":"Bishop",
