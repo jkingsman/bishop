@@ -6,7 +6,7 @@ function populateSiteTable() {
     $('#siteTableBody').empty();
     chrome.storage.sync.get(null, function (data) {
         //populate the table
-        for (var i = 0; i < data.sites.length; i++) {
+        for (var i = parseInt(data.sites.length) - 1; i >= 0; i--) {
             site = data.sites[i];
 
             //append the URL to the table
