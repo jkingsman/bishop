@@ -1,6 +1,6 @@
 //just to make sure we're all initialized on first run
 chrome.storage.sync.get(null, function (data) {
-    if (typeof data.config === "undefined" || typeof data.sites === "undefined" || typeof data.rules === "undefined" || typeof data.status === "undefined") {
+    if (typeof data.config === "undefined" || typeof data.sites === "undefined" || typeof data.rules === "undefined" || typeof data.status === "undefined" || typeof data.queue === "undefined") {
         //default config
         config = {
             recursive: true,
