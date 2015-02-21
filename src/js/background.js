@@ -9,7 +9,7 @@ chrome.storage.sync.get(null, function (data) {
             alertCSSFound: true,
             xhrDelay: 5,
             enableQueue: false,
-            exclusionList: "google.com::facebook.com::reddit.com::chrome-extension" //high traffic sites with either lots of false positives or definitely no weakness that this would catch
+            exclusionList: "google.com::facebook.com::reddit.com::amazon.com::chrome-extension" //high traffic sites with either lots of false positives or definitely no weakness that this would catch
         };
 
         //only create a new sites if we don't have it yet; don't want to overwrite people's on update
