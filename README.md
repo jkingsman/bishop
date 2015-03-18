@@ -13,7 +13,7 @@ Installation
 
 Adding Rules to the Code
 =============
-If you have a general interest rule that you think others could find helpful, feel free to PR the `options_demo.js`. The fields are pretty self explanatory and match the GUI rule addition interface. The `uid` field can be left as is; it's just adding the unique ID for the rule. Risk is intended to describe the relative amount of problems scanning the wrong site with the rule could cause -- e.g. getting scanned for open phpMyAdmin installs is pretty much par for the course for 99% of web servers and is low risk, but punching at a bunch of variations of `../../../../../etc/passwd` grabs could irk some people and is high risk. It's all relative, but use your best judgement. 
+If you have a general rule that you think others could find helpful, feel free to PR the `options_demo.js`. The fields are pretty self explanatory and match the GUI rule addition interface. The `uid` field can be left as is; it's just adding the unique ID for the rule. Risk is intended to describe the relative amount of problems scanning the wrong site with the rule could cause -- e.g. getting scanned for open phpMyAdmin installs is pretty much par for the course for 99% of web servers and is low risk, but punching at a bunch of variations of `../../../../../etc/passwd` grabs could irk some people and is high risk. It's all relative, but use your best judgement. 
 
 License
 =============
