@@ -43,7 +43,7 @@ function buildPage() {
 
         //be loud if it's disabled
         if (!enabled) {
-            showNotification("danger", "Get Git is currently disabled.")
+            showNotification("danger", "Bishop is currently disabled.")
         }
     });
 }
