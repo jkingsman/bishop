@@ -7,7 +7,6 @@ function init_main() {
 }
 
 //main function that populates option boxes and the site list
-
 function buildPage() {
     var config, sites, enabled;
 
