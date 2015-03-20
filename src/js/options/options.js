@@ -27,8 +27,6 @@ function buildPage() {
         $("#alertFound").prop("checked", config.alertFound);
         $("#alertCSSFound").prop("checked", config.alertCSSFound);
 
-        $("#enableQueue").prop("checked", config.enableQueue);
-
         $("#xhrDelay").val(config.xhrDelay);
         $("#exclusionList").val(config.exclusionList);
 
@@ -36,7 +34,6 @@ function buildPage() {
         setTimeout(function () {
             populateRuleTable();
             populateSiteTable();
-            populateQueueTable();
         }, 500)
 
 
@@ -69,8 +66,6 @@ $("[name^=config]").on('change', function () {
         soundFound: $("#soundFound").prop("checked"),
         alertFound: $("#alertFound").prop("checked"),
         alertCSSFound: $("#alertCSSFound").prop("checked"),
-
-        enableQueue: $("#enableQueue").prop("checked"),
 
         xhrDelay: $("#xhrDelay").val(),
         exclusionList: $("#exclusionList").val()
@@ -107,7 +102,6 @@ $("#demoCSSAlert").click(function () {
 chrome.storage.onChanged.addListener(function (changes, namespace) {
     populateRuleTable();
     populateSiteTable();
-    populateQueueTable();
 });
 
 //bind events to dom elements

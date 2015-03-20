@@ -9,18 +9,10 @@ chrome.storage.sync.get(null, function (data) {
     rules = data.rules;
     config = data.config;
     status = data.status;
-    queue = data.queue;
 
     if (data.status && typeof isCSEmbedded === "undefined") { // lets us define a variable so we can include this in options without running a sweep, but we still get the functions
-        //we're enabled; pull the trigger
+        //we're enabled and not being used as a library; pull the trigger
         doScan(stripTrailingSlash(window.location.href), config.recursive);
-    } else if (config.enableQueue && typeof isCSEmbedded === "undefined") {
-        queue.push({
-            "url": stripTrailingSlash(window.location.href)
-        });
-        chrome.storage.sync.set({
-            'queue': queue
-        });
     }
 });
 
@@ -58,6 +50,8 @@ function scanURL(url) {
         delay += (config.xhrDelay * 1000);
         var rule = rules[i];
         if (rule.enabled) {
+            //use a lesser-known setTimeout syntax:
+            //   setTimeout(function, delay, functionParam1, functionParam2, functionParam3, functionParam4, ...)
             setTimeout(upAndMatch, delay, url + "/" + rule.url, rule.searchString, rule.name);
         }
     }

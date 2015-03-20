@@ -8,7 +8,6 @@ chrome.storage.sync.get(null, function (data) {
             alertFound: false,
             alertCSSFound: true,
             xhrDelay: 5,
-            enableQueue: false,
             exclusionList: "google.com::facebook.com::reddit.com::amazon.com::wikipedia.org::chrome-extension" //high traffic sites with either lots of false positives or definitely no weakness that this would catch
         };
 
@@ -26,13 +25,6 @@ chrome.storage.sync.get(null, function (data) {
             });
         }
 
-        //only init the queue if it's not already
-        if (typeof data.queue === "undefined") {
-            chrome.storage.sync.set({
-                "queue": [],
-            });
-        }
-
         //store the defaults
         chrome.storage.sync.set({
             "config": config,
@@ -42,6 +34,7 @@ chrome.storage.sync.get(null, function (data) {
     }
 });
 
+//handle our extension badge
 setInterval(function () {
     var newCount;
     chrome.storage.sync.get(null, function (data) {
@@ -52,6 +45,7 @@ setInterval(function () {
                 text: newCount.toString()
             });
         } else {
+            //have no badge if there's nothing new
             chrome.browserAction.setBadgeText({
                 text: ""
             });
