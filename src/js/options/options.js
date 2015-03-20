@@ -61,7 +61,7 @@ function showNotification(type, message) {
  * Begin Event Listeners
  */
 
-$("[name^=config]").on('change keyup paste', function () {
+$("[name^=config]").on('change', function () {
     //build out an array of config options
     var config = {
         recursive: $("#recursive").prop("checked"),
