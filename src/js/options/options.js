@@ -1,10 +1,4 @@
-function init_main() {
-    //set up our options and site list
-    buildPage();
-
-    //show the menu
-    $('html').hide().fadeIn('slow');
-}
+buildPage();
 
 //main function that populates option boxes and the site list
 function buildPage() {
@@ -41,6 +35,14 @@ function buildPage() {
         if (!enabled) {
             showNotification("danger", "Bishop is currently disabled.")
         }
+        
+        if (typeof data.introShown === "undefined") {
+            startIntro();
+            chrome.storage.sync.set({
+                'introShown': true
+            });
+        }
+        
     });
 }
 
@@ -103,6 +105,3 @@ chrome.storage.onChanged.addListener(function (changes, namespace) {
     populateRuleTable();
     populateSiteTable();
 });
-
-//bind events to dom elements
-document.addEventListener('DOMContentLoaded', init_main);

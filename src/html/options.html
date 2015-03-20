@@ -5,6 +5,7 @@
     <title>Bishop Configuration</title>
     <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css"></link>
     <link rel="stylesheet" type="text/css" href="../css/alert.css"></link>
+    <link rel="stylesheet" type="text/css" href="../css/introjs.css"></link>
 </head>
 
 <body>
@@ -13,7 +14,7 @@
         <div id="notifications"></div>
         <hr />
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12" id="vulnerableSites">
                 <h3><i class="glyphicon glyphicon-screenshot"></i> Vulnerable Sites</h3>
 		<div class="btn-group">
 		    <button type="button" class="btn btn-sm btn-warning" id="clearSites"><i class="glyphicon glyphicon-trash"></i> Clear Vulnerable Sites</button>
@@ -43,7 +44,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12" id="ruleBox">
 		<h3>
 		    <i class="glyphicon glyphicon-th-list"></i>
 		    Rules
@@ -98,7 +99,7 @@
         </div>
         <hr />
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12" id="configBox">
                 <h3><i class="glyphicon glyphicon-cog"></i> Configuration</h3>
                 <form id="config" class="form-horizontal">
                     <div class="form-group">
@@ -117,7 +118,7 @@
                             </div>
                         </div>
                     </div>
-		    <div class="form-group">
+		    <div class="form-group" id="delayBox">
                         <label class="col-sm-2 control-label">XHR</label>
                         <div class="col-sm-10">
                             <div class="checkbox">
@@ -148,7 +149,7 @@
                             </div>
                         </div>
                     </div>
-		    <div class="form-group">
+		    <div class="form-group" id="excludeBox">
                         <label class="col-sm-2 control-label">Excluded</label>
                         <div class="col-sm-10">
                             <p class="form-control-static">Enter strings separated by a double colon ('::'). If one of these strings is found in a URL, the URL won't be scanned. <input id="exclusionList" name="config"></p>
@@ -164,8 +165,14 @@
             </div>
         </div>
         <hr />
-        <p class="text-center text-muted"><a href="https://github.com/jkingsman/bishop">Fork this on GitHub</a> | <a href="https://flattr.com/submit/auto?user_id=jkingsman&url=https%3A%2F%2Fgithub.com%2Fjkingsman%2Fbishop" target="_blank"><img src="https://button.flattr.com/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0"></a>
-        </p>
+	<div id="beggingBox">
+	    <p class="text-center text-muted">
+		<a href="https://github.com/jkingsman/bishop">Fork this on GitHub</a> |
+		<a href="https://flattr.com/submit/auto?user_id=jkingsman&url=https%3A%2F%2Fgithub.com%2Fjkingsman%2Fbishop" target="_blank">
+		    <img src="https://button.flattr.com/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0">
+		</a>
+	    </p>
+	</div>
     </div>
 
     <div class="modal fade" id="exportDataModal" tabindex="-1" role="dialog" aria-labelledby="exportData" aria-hidden="true">
@@ -251,6 +258,8 @@
     <script type="text/javascript" src="../js/lib/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="../js/lib/bootstrap.min.js"></script>
     <script type="text/javascript" src="../js/lib/bootstrap-growl.min.js"></script>
+    <script type="text/javascript" src="../js/lib/intro.js"></script>
+    <script type="text/javascript" src="../js/intro_settings.js"></script>
     
     <script type="text/javascript" src="../js/options/options_demo.js"></script>
     <script type="text/javascript" src="../js/options/options_sites.js"></script>
