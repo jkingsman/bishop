@@ -33,7 +33,7 @@ $("#addDemoRules").click(function () {
             "enabled": true,
             "description": "Find index listing SVN dirs",
             "url": ".svn",
-            "searchString": "Index(.|\n)*entries",
+            "searchString": "Index(.|\n)*entries(.|\n)*props",
             "risk": "low"
         }, {
             "name": "eval'ing a Variable",
