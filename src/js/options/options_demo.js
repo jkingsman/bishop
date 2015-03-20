@@ -38,7 +38,7 @@ $("#addDemoRules").click(function () {
         }, {
             "name": "eval'ing a Variable",
             "uid": Math.floor(Math.random() * 16777215).toString(16),
-            "enabled": true,
+            "enabled": false,
             "description": "Find JS eval's that concatenate",
             "url": "",
             "searchString": "eval(\s|)\\((\"|').*(\"|')(\s|)\+", //note that the double quotes in this are escaped; the original regex is eval(\s|)\(("|').*("|')(\s|)\+
@@ -142,7 +142,7 @@ $("#addDemoRules").click(function () {
             'rules': rules
         }, function () {
             $('#addRuleModal').modal('hide');
-            showNotification("success", "Rule added.");
+            showNotification("success", "Rules added.");
             populateRuleTable();
             alert("Some of the demo exploits can get you into trouble if you run them on the wrong domain. Please carefully review them before running Bishop.")
         });
