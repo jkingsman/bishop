@@ -84,12 +84,13 @@ function addSiteAndAlert(url, rule) {
             'sites': sites
         });
 
-        //alert the user
+        //handle audio alert
         if (config.soundFound) {
             var audio = new Audio(chrome.extension.getURL('/audio/alert.mp3'));
             audio.play();
         }
 
+        //handle JS alert
         if (config.alertFound) {
             //the timeout is here due to some weird issue where, without a timeout, alert dismissal is required before the audio plays
             //I'm guessing it's some issue with async processes getting blocked but who knows. this seems to fix it.
@@ -98,6 +99,7 @@ function addSiteAndAlert(url, rule) {
             }, 500);
         }
 
+        //handle CSS alert
         if (config.alertCSSFound) {
             //install our CSS
             var style = document.createElement('link');
@@ -109,6 +111,9 @@ function addSiteAndAlert(url, rule) {
             //insert the alert itself
             document.body.insertAdjacentHTML('afterBegin', '<div id="note">&#9821; Bishop matched your rule "' + rule + '". (Refresh page to dismiss)</div>');
         }
+        
+        //set the page title
+        document.title = "(VULNERABLE) | " + document.title;
     });
 }
 
