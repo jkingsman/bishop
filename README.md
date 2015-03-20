@@ -17,4 +17,4 @@ If you have a general rule that you think others could find helpful, feel free t
 
 License
 =============
-MIT, with provision not to submit this code or code derived from this to the Chrome Web Store without express written permission.
+MIT.
