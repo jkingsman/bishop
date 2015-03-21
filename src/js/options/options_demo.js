@@ -144,7 +144,7 @@ $("#addDemoRules").click(function () {
             $('#addRuleModal').modal('hide');
             showNotification("success", "Rules added.");
             populateRuleTable();
-            alert("Some of the demo exploits can get you into trouble if you run them on the wrong domain. Please carefully review them before running Bishop.")
+            alert("Some of the demo exploits can get you into trouble if you run them on the wrong domain. Please carefully review them before running Bishop.");
         });
     });
 });

@@ -9,7 +9,7 @@ var gulp = require('gulp'),
 
 //lint it out
 gulp.task('hint', function () {
-    gulp.src(['./src/js/**/*'])
+    gulp.src(['./src/js/background/**/*', './src/js/content_script/**/*', './src/js/options/**/*', './src/js/popup/**/*', ])
         .pipe(jshint())
         .pipe(jshint.reporter(stylish));
 });
@@ -103,4 +103,4 @@ gulp.task('realtime', function() {
 });
 
 gulp.task('watch', ['realtime', 'html', 'css', 'js', 'copy']);
-gulp.task('default', ['html', 'css', 'js', 'copy']);
+gulp.task('default', ['hint', 'html', 'css', 'js', 'copy']);

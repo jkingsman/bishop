@@ -101,7 +101,7 @@ $("#dedupSites").click(function () {
 //hook the delete site link (have to do this a bit funky since they're dynamically added)
 $(document.body).on("click", "[id^=delSite]", function () {
     //extract the UID from the element ID
-    var id = this.id.replace(/delSite/g, '')
+    var id = this.id.replace(/delSite/g, '');
 
     chrome.storage.sync.get(null, function (data) {
         sites = data.sites;

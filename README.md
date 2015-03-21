@@ -31,7 +31,7 @@ Download from the Chrome Web Store [here](http://example.com).
 
   `gulp`
 
-This is a singular build; if you want gulp to watch folders for changes and make the appropriate build changes, run `gulp watch`. If you want to hint your JS (please do), run `gulp hint`.
+This is a singular build; if you want gulp to watch folders for changes and make the appropriate build changes, run `gulp watch` (this will *not* hint your js on build; the default will).
 
 Files in the `/src` folder will be built in the `dist` folder. The dist folder is then ready to be compressed or imported to Chrome as an unpacked extension.
 

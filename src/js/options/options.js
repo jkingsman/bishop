@@ -28,12 +28,12 @@ function buildPage() {
         setTimeout(function () {
             populateRuleTable();
             populateSiteTable();
-        }, 500)
+        }, 500);
 
 
         //be loud if it's disabled
         if (!enabled) {
-            showNotification("danger", "Bishop is currently disabled.")
+            showNotification("danger", "Bishop is currently disabled.");
         }
         
         if (typeof data.introShown === "undefined") {
