@@ -148,10 +148,10 @@
                             </div>
                         </div>
                     </div>
-		    <div class="form-group" id="excludeBox">
-                        <label class="col-sm-2 control-label">Excluded</label>
+		    <div class="form-group" id="includeBox">
+                        <label class="col-sm-2 control-label">Sites to Scan</label>
                         <div class="col-sm-10">
-                            <p class="form-control-static">Enter strings separated by a double colon ('::'). If one of these strings is found in a URL, the URL won't be scanned. <input id="exclusionList" name="config"></p>
+                            <p class="form-control-static">Sites will only be scanned if they match the regular expression in this box. <input id="inclusionRegex" name="config"></p>
                         </div>
                     </div>
                     <div class="form-group">

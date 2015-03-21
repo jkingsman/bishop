@@ -18,15 +18,10 @@ chrome.storage.sync.get(null, function (data) {
 
 //recurse through the directories and perform the scans
 function doScan(currentScanUrl, recursive) {
-    if (config.exclusionList.length > 0) {
-        //we have an exclusion list to work with; break it out
-        var excludes = config.exclusionList.split("::");
-        for (var i = 0; i < excludes.length; i++) {
-            if (currentScanUrl.indexOf(excludes[i]) > -1 && excludes[i].length > 0) {
-                //this page URL contains a blocked url string and it's not an empty string; get outta here
-                return;
-            }
-        }
+    var matchPattern = new RegExp(config.inclusionRegex);
+    if (!matchPattern.test(currentScanUrl)) {
+        console.log("dicks");
+        return;
     }
 
     if (recursive) {

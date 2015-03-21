@@ -15,8 +15,8 @@ function startIntro() {
             intro: 'This is the delay between each rule test. If your browser is running slowly, try increasing this.',
             position: 'top'
         }, {
-            element: '#excludeBox',
-            intro: "This is the exclusion list. If you are finding too many false positives on a host, add it here.",
+            element: '#includeBox',
+            intro: "IMPORTANT! This is the inclusion list. If a site matches this regex, it will be scanned. This software should only be used on hosts that you have control of and are authorized to scan.",
             position: 'top'
         }, {
             element: '#addDemoRules',

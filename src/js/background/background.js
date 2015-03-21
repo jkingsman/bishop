@@ -1,6 +1,6 @@
 //just to make sure we're all initialized on first run
 chrome.storage.sync.get(null, function (data) {
-    if (typeof data.config === "undefined" || typeof data.sites === "undefined" || typeof data.rules === "undefined" || typeof data.status === "undefined" || typeof data.queue === "undefined") {
+    if (typeof data.config === "undefined" || typeof data.sites === "undefined" || typeof data.rules === "undefined" || typeof data.status === "undefined") {
         //default config
         config = {
             recursive: true,
@@ -8,7 +8,7 @@ chrome.storage.sync.get(null, function (data) {
             alertFound: false,
             alertCSSFound: true,
             xhrDelay: 5,
-            exclusionList: "google.com::facebook.com::reddit.com::amazon.com::wikipedia.org::chrome-extension::wellsfargo.com" //high traffic sites with either lots of false positives or definitely no weakness that this would catch
+            inclusionRegex: "example.com" 
         };
 
         //only create a new sites if we don't have it yet; don't want to overwrite people's on update

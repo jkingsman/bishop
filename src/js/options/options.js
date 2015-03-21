@@ -22,7 +22,7 @@ function buildPage() {
         $("#alertCSSFound").prop("checked", config.alertCSSFound);
 
         $("#xhrDelay").val(config.xhrDelay);
-        $("#exclusionList").val(config.exclusionList);
+        $("#inclusionRegex").val(config.inclusionRegex);
 
         //set a delay so we don't cause issues on the first draw
         setTimeout(function () {
@@ -80,7 +80,7 @@ $("[name^=config]").on('change', function () {
         alertCSSFound: $("#alertCSSFound").prop("checked"),
 
         xhrDelay: $("#xhrDelay").val(),
-        exclusionList: $("#exclusionList").val()
+        inclusionRegex: $("#inclusionRegex").val()
 
     };
 
