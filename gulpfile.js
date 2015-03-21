@@ -5,7 +5,8 @@ var gulp = require('gulp'),
     del        = require('del'),
     uglify     = require('gulp-uglify'),
     jshint     = require('gulp-jshint'),
-    stylish    = require('jshint-stylish');
+    stylish    = require('jshint-stylish'),
+    zip        = require('gulp-zip');
 
 //lint it out
 gulp.task('hint', function () {
@@ -87,14 +88,20 @@ gulp.task('js-lib', function () {
 gulp.task('copy', function () {
     return gulp.src(['./src/audio/**/*', './src/img/**/*', './src/fonts/**/*', './src/manifest.json'], {
         base: 'src'
-    }).pipe(gulp.dest('dist'));
+    }).pipe(gulp.dest('./dist'));
+});
+
+gulp.task('zip', ['default'], function () {
+    return gulp.src('dist/**/*')
+        .pipe(zip('bishop.zip'))
+        .pipe(gulp.dest('./'));
 });
 
 //tie it all together
 gulp.task('js', ['js-background', 'js-content', 'js-popup', 'js-options', 'js-lib'])
 gulp.task('css', ['main-css', 'alert-css'])
 
-
+//realtime watching
 gulp.task('realtime', function() {
   gulp.watch('./src/js/**/*', ['js']);
   gulp.watch('./src/html/**/*', ['html']);
