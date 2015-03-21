@@ -14,7 +14,7 @@ $("#addDemoRules").click(function () {
         }, {
             "name": "Git Repo (Indexable)",
             "uid": Math.floor(Math.random() * 16777215).toString(16),
-            "enabled": true,
+            "enabled": false,
             "description": "Find index-listing .git dirs",
             "url": ".git",
             "searchString": "Index of(.|\n)*HEAD",
@@ -30,7 +30,7 @@ $("#addDemoRules").click(function () {
         }, {
             "name": "SVN Repo (Indexable)",
             "uid": Math.floor(Math.random() * 16777215).toString(16),
-            "enabled": true,
+            "enabled": false,
             "description": "Find index listing SVN dirs",
             "url": ".svn",
             "searchString": "Index(.|\n)*entries(.|\n)*props",
@@ -54,7 +54,7 @@ $("#addDemoRules").click(function () {
         }, {
             "name": "Web Accessible php.exe 2",
             "uid": Math.floor(Math.random() * 16777215).toString(16),
-            "enabled": true,
+            "enabled": false,
             "description": "Finds directory listings that include php.exe",
             "url": "php5",
             "searchString": "Index(.|\n)*modified(.|\n)*php\.exe",
@@ -70,7 +70,7 @@ $("#addDemoRules").click(function () {
         }, {
             "name": "Indexable cgi-bin",
             "uid": Math.floor(Math.random() * 16777215).toString(16),
-            "enabled": true,
+            "enabled": false,
             "description": "Find directory listed cgi-bin's",
             "url": "cgi-bin",
             "searchString": "Index(.|\n)*modified",
@@ -78,7 +78,7 @@ $("#addDemoRules").click(function () {
         }, {
             "name": "OWA Login 2",
             "uid": Math.floor(Math.random() * 16777215).toString(16),
-            "enabled": true,
+            "enabled": false,
             "description": "Find Outlook Web Access log ins",
             "url": "mail",
             "searchString": "Connected to Microsoft Exchange",
@@ -94,7 +94,7 @@ $("#addDemoRules").click(function () {
         }, {
             "name": "Typo3 phpMyAdmin Setup",
             "uid": Math.floor(Math.random() * 16777215).toString(16),
-            "enabled": true,
+            "enabled": false,
             "description": "Accessible phpMyAdmin setup page on Typo3",
             "url": "typo3/phpmyadmin/scripts/setup.php",
             "searchString": "You want to configure phpMyAdmin",
@@ -102,7 +102,7 @@ $("#addDemoRules").click(function () {
         }, {
             "name": "phpMyAdmin Setup (alt. name 1)",
             "uid": Math.floor(Math.random() * 16777215).toString(16),
-            "enabled": true,
+            "enabled": false,
             "description": "Accessible phpMyAdmin setup page (alt. name)",
             "url": "php/scripts/setup.php",
             "searchString": "You want to configure phpMyAdmin",
@@ -118,7 +118,7 @@ $("#addDemoRules").click(function () {
         }, {
             "name": "TimThumb",
             "uid": Math.floor(Math.random() * 16777215).toString(16),
-            "enabled": true,
+            "enabled": false,
             "description": "TimThumb thumbnail generators; may be vulnerable depending on version",
             "url": "timthumb.php",
             "searchString": "TimThumb",
@@ -126,7 +126,7 @@ $("#addDemoRules").click(function () {
         }, {
             "name": "Cricket",
             "uid": Math.floor(Math.random() * 16777215).toString(16),
-            "enabled": true,
+            "enabled": false,
             "description": "Find Cricket network statistics aggregators",
             "url": "/cgi-bin/cricket/grapher.cgi",
             "searchString": "Cricket network statistics",
