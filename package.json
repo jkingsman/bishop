@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/jkingsman/bishop",
   "devDependencies": {
+    "del": "^1.1.1",
     "gulp-concat": "^2.5.2",
     "gulp-minify-css": "^1.0.0",
     "gulp-minify-html": "^1.0.1",

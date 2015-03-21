@@ -1,14 +1,13 @@
 var gulp = require('gulp'),
-    minifyHtml = require("gulp-minify-html"),
-    minifyCss  = require("gulp-minify-css"),
+    minifyHtml = require('gulp-minify-html'),
+    minifyCss  = require('gulp-minify-css'),
     concat     = require('gulp-concat'),
-    rimraf     = require('gulp-rimraf'),
-    uglify     = require("gulp-uglify");
+    del        = require('del'),
+    uglify     = require('gulp-uglify');
 
 //clear out the folder
 gulp.task('empty', function() {
-  return gulp.src('./dist/*', { read: false })
-    .pipe(rimraf());
+    del(['./dest/**']);
 });
 
 // minify our html
