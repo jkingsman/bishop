@@ -9,7 +9,7 @@ Download from the Chrome Web Store [here](http://example.com).
 ### Manual
 
 
-> You'll need node and npm set up on your system (which is beyond the scope of this README), and gulp installed (`npm install -g gulp` if you don't already have it.
+> You'll need node and npm set up on your system (which is beyond the scope of this README), and gulp installed (`npm install -g gulp` if you don't already have it).
 
 1. Clone this repo and move into it:
 
