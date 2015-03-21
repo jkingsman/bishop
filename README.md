@@ -11,6 +11,8 @@ Bishop is MIT licensed and open source; contribute at https://github.com/jkingsm
 
 ## Installation
 
+After either installation method, you'll need to setup your inclusion whitelist (see the introduction on first run for more info).
+
 ### Automatic
 Download from the Chrome Web Store.
 
@@ -54,6 +56,11 @@ If you have a general rule that you think others could find helpful, feel free t
 
 ## Notes
 - Bishop is built on sending background XHR requests, many of which will result in 404's. These *will* show up in your console log, so be aware of that when browsing. If you feel comfortable ignoring 404's, you can check the "Hide network messages" box at the top of the console window.
+- The import formats are as follows: 
+ 
+rules: `[{"description":"a few words descripting it","enabled":true,"name":"The Rule Name","risk":"low","searchString":"the regex to execut","uid":"random hex ID","url":"what URL addition )if any) to run the regex on"}, {...}]`
+
+sites: `[{"rule":"mathced rule name","uid":"random hex uid","url":matched URL"}, {...}]`
 
 ## License
 MIT.
