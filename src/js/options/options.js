@@ -36,6 +36,14 @@ function buildPage() {
             showNotification("danger", "Bishop is currently disabled.");
         }
         
+        //add the inclusion field if we don't have it
+        if (typeof data.config.inclusionRegex === "undefined") {
+            chrome.storage.sync.set({
+                'inclusionRegex': "examplesitename"
+            });
+        }
+        
+        //show our demo if we haven't
         if (typeof data.introShown === "undefined") {
             startIntro();
             chrome.storage.sync.set({
