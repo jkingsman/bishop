@@ -4,7 +4,9 @@ Bishop is a Chrome extension that will hunt websites you browse for files that c
 ## Installation
 
 ### Automatic
-Download from the Chrome Web Store [here](http://example.com).
+Download from the Chrome Web Store.
+
+[![Image of Chrome Store Badge](https://developer.chrome.com/webstore/images/ChromeWebStore_Badge_v2_340x96.png)](https://chrome.google.com/webstore/detail/cbkdeoaaclnbidadjimofnhpbfhjakoe)
 
 ### Manual
 
@@ -47,3 +49,5 @@ If you have a general rule that you think others could find helpful, feel free t
 
 ## License
 MIT.
+
+[![Flattr this](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=jkingsman&amp;url=https%3A%2F%2Fgithub.com%2Fjkingsman%2Fbishop) 
