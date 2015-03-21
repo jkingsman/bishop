@@ -86,7 +86,7 @@ $("[name^=config]").on('change', function () {
 
 //play the ding for the user
 $("#demoSound").click(function () {
-    var audio = new Audio('../audio/alert.mp3');
+    var audio = new Audio('/audio/alert.mp3');
     audio.play();
 });
 

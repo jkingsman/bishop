@@ -6,7 +6,7 @@
     "author": "Jack Kingsman <jack.kingsman@gmail.com>",
     "homepage_url": "https://github.com/jkingsman/bishop",
     "background": {
-	"scripts": ["js/background.js"]
+	"scripts": ["background.js"]
     },
 	"browser_action":{
         "default_title":"Bishop",
@@ -14,7 +14,7 @@
             "19":"img/bishop19.png",
             "38":"img/bishop38.png"
         },
-        "default_popup":"html/popup.html"
+        "default_popup":"popup.html"
     },
     "icons": {
         "16": "img/bishop16.png",
@@ -23,13 +23,13 @@
     },
     "content_scripts": [{
         "matches": ["*://*/*"],
-        "js": ["js/content_script.js"],
+        "js": ["content_script.js"],
         "run_at": "document_end"
     }],
-    "options_page": "html/options.html",
+    "options_page": "options.html",
     "permissions": ["storage"],
 	"web_accessible_resources": [
 		"audio/alert.mp3",
-		"css/alert.css"
+		"alert.css"
 	]
 }

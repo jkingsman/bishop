@@ -105,7 +105,7 @@ function addSiteAndAlert(url, rule) {
             var style = document.createElement('link');
             style.rel = 'stylesheet';
             style.type = 'text/css';
-            style.href = chrome.extension.getURL('css/alert.css');
+            style.href = chrome.extension.getURL('alert.css');
             (document.head || document.documentElement).appendChild(style);
 
             //insert the alert itself

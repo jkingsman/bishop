@@ -11,7 +11,7 @@ function init_main() {
         }
 
         //build options link
-        $("#optLink").attr("href", chrome.extension.getURL("html/options.html"));
+        $("#optLink").attr("href", chrome.extension.getURL("options.html"));
 
         //show the menu
         $('html').hide().fadeIn('slow');
