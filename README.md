@@ -1,5 +1,13 @@
 # Bishop
-Bishop is a Chrome extension that will hunt websites you browse for files that contain a given string - it will find you Git repos, exposed config files, open `cgi-bin`'s, web accessible `etc/passwd` files, and more.
+Bishop is a vulnerability scanner that searches websites in the background while you browse, looking for exposed version control systems, misconfigured administrative tools, and more.
+
+It works by searching for files with a given path on the current URL path and all parent paths, applying given regex to the results to check for proof positive of a vulnerable location. If the path returns 200 and matches the regex, it's flagged as vulnerable and alerts you. All rules are run on all directories in a set of time-staggered background XHR requests, so network throughput remains high at all times.
+
+Bishop comes with a set of rules that hunt for the lowest hanging fruit, but the rule system is entirely extensible - rules are regular expressions that are run on specified directories, so if you can turn it into a regex, Bishop will look for it. Try loading Bishop with the demo ruleset and see how it works. The risk classification allows you to set different tiers of vulnerability so applications can be tested to stricter or looser security guidelines.
+
+Bishop is intended SOLELY for legal use on web servers that you control or are permitted to scan, and the developers are not responsible for how you choose to use this software. Be safe and legal with this tool. Rate limiting 
+
+Bishop is MIT licensed and open source; contribute at https://github.com/jkingsman/bishop.
 
 ## Installation
 
@@ -42,7 +50,7 @@ Download from the Chrome Web Store.
 Files in the `/src` folder will be built in the `dist` folder. The dist folder is then ready to be compressed or imported to Chrome as an unpacked extension.
 
 ## Adding Rules to the Code
-If you have a general rule that you think others could find helpful, feel free to PR it. The fields are pretty self explanatory and match the GUI rule addition interface. The `uid` field can be left as is; it's just adding the unique ID for the rule. Risk is intended to describe the relative amount of problems scanning the wrong site with the rule could cause -- e.g. getting scanned for open phpMyAdmin installs is pretty much par for the course for 99% of web servers and is low risk, but punching at a bunch of variations of `../../../../../etc/passwd` grabs could irk some people and is high risk. It's all relative, but use your best judgment. 
+If you have a general rule that you think others could find helpful, feel free to PR it. The fields are pretty self explanatory and match the GUI rule addition interface. The `uid` field can be left as is; it's just adding the unique ID for the rule. Risk is intended to describe the relative risk that such a vulnerability would indicate, allowing you to include stricter or looser security requirements for different applications.
 
 ## Notes
 - Bishop is built on sending background XHR requests, many of which will result in 404's. These *will* show up in your console log, so be aware of that when browsing. If you feel comfortable ignoring 404's, you can check the "Hide network messages" box at the top of the console window.
