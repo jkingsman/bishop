@@ -8,7 +8,7 @@ chrome.storage.sync.get(null, function (data) {
             alertFound: false,
             alertCSSFound: true,
             xhrDelay: 5,
-            inclusionRegex: "example.com" 
+            inclusionRegex: "examplesitename" 
         };
 
         //only create a new sites if we don't have it yet; don't want to overwrite people's on update

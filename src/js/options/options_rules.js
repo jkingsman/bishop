@@ -180,6 +180,7 @@ $("#importRule").click(function () {
             });
         });
     }
+    return false;
 });
 
 //deal with any of the enable buttons
@@ -229,8 +230,9 @@ $(document.body).on("click", "[id^=bulkEnable]", function () {
             handleCheckboxes(data.rules);
             showNotification("success", "Rule status changed.");
         });
-
     });
+    
+    return false;
 });
 
 //deal with any of the disable buttons
@@ -280,6 +282,7 @@ $(document.body).on("click", "[id^=bulkDisable]", function () {
             handleCheckboxes(data.rules);
             showNotification("success", "Rule status changed.");
         });
-
     });
+    
+    return false;
 });

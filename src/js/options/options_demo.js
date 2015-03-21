@@ -147,4 +147,6 @@ $("#addDemoRules").click(function () {
             alert("Some of the demo exploits can get you into trouble if you run them on the wrong domain. Please carefully review them before running Bishop.");
         });
     });
+    
+    return false;
 });

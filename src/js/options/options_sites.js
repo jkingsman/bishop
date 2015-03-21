@@ -1,6 +1,4 @@
 //clear sites table and populate
-
-
 function populateSiteTable() {
     var site;
     $('#siteTableBody').empty();
@@ -30,6 +28,7 @@ $("#clearSites").click(function () {
             showNotification("success", "Site list cleared.");
         });
     }
+    return false;
 });
 
 //pops up a modal with the JSON of the vulnerable sites in it
@@ -39,6 +38,7 @@ $("#exportSites").click(function () {
         $("#exportBox").val(JSON.stringify(sites));
         $('#exportDataModal').modal('show');
     });
+    return false;
 });
 
 //pops up a modal with the JSON of the vulnerable sites in it
@@ -60,6 +60,7 @@ $("#importSites").click(function () {
             });
         });
     }
+    return false;
 });
 
 //deduplicates site list
@@ -120,4 +121,5 @@ $(document.body).on("click", "[id^=delSite]", function () {
             showNotification("warning", "Site deleted.");
         });
     });
+    return false;
 });

@@ -106,16 +106,19 @@ $("[name^=config]").on('change', function () {
 $("#demoSound").click(function () {
     var audio = new Audio('/audio/alert.mp3');
     audio.play();
+    return false;
 });
 
 //show what the alert looks like
 $("#demoAlert").click(function () {
     alert("This site has a publically accessible Git repo.");
+    return false;
 });
 
 //show what the CSS alert looks like
 $("#demoCSSAlert").click(function () {
     $('body').prepend('<div id="note">&#9821; Bishop matched your rule "Git Repo". (Refresh page to dismiss)</div>');
+    return false;
 });
 
 //get live updates when something changes
