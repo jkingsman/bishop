@@ -16,7 +16,7 @@ function startIntro() {
             position: 'top'
         }, {
             element: '#excludeBox',
-            intro: "This is the exclusion list. If you are finding too many false positives on a site, or you don't want to scan it (think fbi.gov), add it here.",
+            intro: "This is the exclusion list. If you are finding too many false positives on a host, add it here.",
             position: 'top'
         }, {
             element: '#addDemoRules',
