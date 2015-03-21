@@ -13,20 +13,28 @@ Download from the Chrome Web Store [here](http://example.com).
 
 1. Clone this repo and move into it:
 
-	   git clone git@github.com:jkingsman/bishop.git
-       cd bishop
+```
+git clone git@github.com:jkingsman/bishop.git
+cd bishop
+```
 
 2. Install the gulp dependencies:
 
-       npm install
+```
+npm install
+```
 
 3. Make sure the build directory is empty:
 
-	   gulp empty 
+```
+gulp empty 
+```
 
 4. Build it!
 
-	   gulp
+```
+gulp
+```
 
 Gulp will now watch folders for changes and make the appropriate build changes (if you want to do a singular build, run `gulp nowatch`). Files in the `/src` folder will be built in the `dist` folder. The dist folder is then ready to be compressed or imported to Chrome as an unpacked extension.
 
