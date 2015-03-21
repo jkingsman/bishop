@@ -152,6 +152,36 @@ $(document.body).on("click", "[id^=ruleEnabled]", function () {
     });
 });
 
+//pops up a modal with the JSON of the rules in it
+$("#exportRule").click(function () {
+    chrome.storage.sync.get(null, function (data) {
+        var rules = data.rules;
+        $("#exportRuleBox").val(JSON.stringify(rules));
+        $('#exportRuleModal').modal('show');
+    });
+});
+
+//pops up a modal with the JSON of the vulnerable sites in it
+$("#importRule").click(function () {
+    var importRule, rule;
+    var confirmed = confirm("This will import the current contents of the textarea; badly formed data will cause problems. Please reference the export format for the correct import format.");
+    if (confirmed) {
+        importData = jQuery.parseJSON($("#exportRuleBox").val());
+        chrome.storage.sync.get(null, function (data) {
+            for (var i = 0; i < importData.length; i++) {
+                rule = importData[i];
+                data.rules.push(rule);
+            }
+            chrome.storage.sync.set({
+                'rules': data.rules
+            }, function () {
+                showNotification("success", "Rules loaded.");
+                $('#exportRuleModal').modal('hide');
+            });
+        });
+    }
+});
+
 //deal with any of the enable buttons
 $(document.body).on("click", "[id^=bulkEnable]", function () {
     var selector = this.id.replace(/bulkEnable/g, '');

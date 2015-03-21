@@ -74,7 +74,8 @@
 		</div>
 		<button type="button" class="btn btn-sm btn-danger" id="deleteAllRules"><i class="glyphicon glyphicon-trash"></i> Delete All Rules</button>
                 <a href="#" id="addDemoRules" class="btn btn-sm btn-primary pull-right"><i class="glyphicon glyphicon-gift"></i> Add Demo Rules</a>
-                <a href="#" id="addRule" class="btn btn-sm btn-success pull-right" style="margin-right: 5px;"><i class="glyphicon glyphicon-plus"></i> Add Rule</a>
+                <a href="#" id="exportRule" class="btn btn-sm btn-primary pull-right" style="margin-right: 5px;"><i class="glyphicon transfer"></i> Import/Export Rules</a>
+		<a href="#" id="addRule" class="btn btn-sm btn-success pull-right" style="margin-right: 5px;"><i class="glyphicon glyphicon-plus"></i> Add Rule</a>
                 <div class="clearfix"></div>
                 <div style="height: 200px; overflow: auto;">
                     <table class="table table-striped" id="ruleTable">
@@ -186,6 +187,24 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-success pull-left" id="importSites">Import</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="exportRuleModal" tabindex="-1" role="dialog" aria-labelledby="exportRule" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="exportDataLabel">Import/Export Rules</h4>
+                </div>
+                <div class="modal-body">
+                    <textarea id="exportRuleBox" style="-webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: order-box; width: 100%;" rows=15></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success pull-left" id="importRule">Import</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>

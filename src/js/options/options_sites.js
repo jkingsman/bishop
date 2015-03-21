@@ -44,7 +44,7 @@ $("#exportSites").click(function () {
 //pops up a modal with the JSON of the vulnerable sites in it
 $("#importSites").click(function () {
     var importData, site;
-    var confirmed = confirm("This will delete all import the current contents of the textarea; badly formed data will cause problems. Please reference the export format for the correct import format.");
+    var confirmed = confirm("This will import the current contents of the textarea; badly formed data will cause problems. Please reference the export format for the correct import format.");
     if (confirmed) {
         importData = jQuery.parseJSON($("#exportBox").val());
         chrome.storage.sync.get(null, function (data) {

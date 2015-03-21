@@ -10,20 +10,20 @@ var gulp = require('gulp'),
 
 //lint it out
 gulp.task('hint', function () {
-    gulp.src(['./src/js/background/**/*', './src/js/content_script/**/*', './src/js/options/**/*', './src/js/popup/**/*', ])
+    gulp.src(['./src/js/background/**/*', './src/js/content_script/**/*', './src/js/options/**/*', './src/js/popup/**/*'])
         .pipe(jshint())
         .pipe(jshint.reporter(stylish));
 });
 
 //clear out the folder
 gulp.task('empty', function() {
-    del(['./dest/**']);
+    del(['./dest/**', './bishop.zip']);
 });
 
 // minify our html
 gulp.task('html', function () {
     gulp.src('./src/html/*.html') 
-    //.pipe(minifyHtml())
+    .pipe(minifyHtml())
     .pipe(gulp.dest('./dist/'));
 });
 
