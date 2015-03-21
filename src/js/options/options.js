@@ -47,13 +47,23 @@ function buildPage() {
 }
 
 //show notifications
-//type is a bootstrap alert class sans the 'alert-'
-//message is the message to display
-//time is the amount of time it should be visible in seconds; set 0 for indefinitely
-function showNotification(type, message) {
-    $.growl(message, {
-        type: type
-    });
+//style is a bootstrap alert class sans the 'alert-'
+//content is the message to display
+function showNotification(notifyType, notifyContent) {
+    $.notify(
+        {
+            message: notifyContent,
+            title: notifyType.charAt(0).toUpperCase() + notifyType.slice(1) + "!"
+        },
+        {
+            type: 'minimalist',
+            delay: 5000,
+            template: '<div data-notify="container" class="col-xs-11 col-sm-2 alert alert-' + notifyType + ' alert-{0}" role="alert">' +
+                    '<span data-notify="title">{1}</span>' +
+                    '<span data-notify="message">{2}</span>' +
+            '</div>'
+        }
+    );
 }
 
 /*

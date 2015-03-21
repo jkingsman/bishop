@@ -3,7 +3,16 @@ var gulp = require('gulp'),
     minifyCss  = require('gulp-minify-css'),
     concat     = require('gulp-concat'),
     del        = require('del'),
-    uglify     = require('gulp-uglify');
+    uglify     = require('gulp-uglify'),
+    jshint     = require('gulp-jshint'),
+    stylish    = require('jshint-stylish');
+
+//lint it out
+gulp.task('hint', function () {
+    gulp.src(['./src/js/background/*', './src/js/content_script/*', './src/js/options/*', './src/js/popup/*', ])
+        .pipe(jshint())
+        .pipe(jshint.reporter(stylish));
+});
 
 //clear out the folder
 gulp.task('empty', function() {
@@ -13,7 +22,7 @@ gulp.task('empty', function() {
 // minify our html
 gulp.task('html', function () {
     gulp.src('./src/html/*.html') 
-    .pipe(minifyHtml())
+    //.pipe(minifyHtml())
     .pipe(gulp.dest('./dist/'));
 });
 
@@ -87,7 +96,7 @@ gulp.task('css', ['main-css', 'alert-css'])
 
 
 gulp.task('watch', function() {
-  gulp.watch('./src/js/**/*', ['scripts']);
+  gulp.watch('./src/js/**/*', ['js']);
   gulp.watch('./src/html/**/*', ['html']);
   gulp.watch('./src/css/**/*', ['css']);
   gulp.watch(['./src/audio/**/*', './src/img/**/*', './src/fonts/**/*', './src/manifest.json'], ['copy']);

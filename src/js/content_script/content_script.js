@@ -149,7 +149,7 @@ function upAndMatch(url, regex, ruleName) {
 
     if (req.status == 200) {
         if (pattern.test(req.responseText)) {
-            addSiteAndAlert(url, ruleName)
+            addSiteAndAlert(url, ruleName);
         }
         return false;
     }
