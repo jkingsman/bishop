@@ -9,7 +9,7 @@ var gulp = require('gulp'),
 
 //lint it out
 gulp.task('hint', function () {
-    gulp.src(['./src/js/background/*', './src/js/content_script/*', './src/js/options/*', './src/js/popup/*', ])
+    gulp.src(['./src/js/**/*'])
         .pipe(jshint())
         .pipe(jshint.reporter(stylish));
 });
@@ -95,12 +95,12 @@ gulp.task('js', ['js-background', 'js-content', 'js-popup', 'js-options', 'js-li
 gulp.task('css', ['main-css', 'alert-css'])
 
 
-gulp.task('watch', function() {
+gulp.task('realtime', function() {
   gulp.watch('./src/js/**/*', ['js']);
   gulp.watch('./src/html/**/*', ['html']);
   gulp.watch('./src/css/**/*', ['css']);
   gulp.watch(['./src/audio/**/*', './src/img/**/*', './src/fonts/**/*', './src/manifest.json'], ['copy']);
 });
 
-gulp.task('nowatch', ['html', 'css', 'js', 'copy']);
-gulp.task('default', ['watch', 'html', 'css', 'js', 'copy']);
+gulp.task('watch', ['realtime', 'html', 'css', 'js', 'copy']);
+gulp.task('default', ['html', 'css', 'js', 'copy']);

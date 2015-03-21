@@ -11,32 +11,29 @@ Download from the Chrome Web Store [here](http://example.com).
 
 > You'll need node and npm set up on your system (which is beyond the scope of this README), and gulp installed (`npm install -g gulp` if you don't already have it).
 
-1. Clone this repo and move into it:
+1. Clone this repo:
 
-```
-git clone git@github.com:jkingsman/bishop.git
-cd bishop
-```
+  `git clone git@github.com:jkingsman/bishop.git`
+
+2. Move into it:
+
+  `cd bishop`
 
 2. Install the gulp dependencies:
 
-```
-npm install
-```
+  `npm install`
 
 3. Make sure the build directory is empty:
 
-```
-gulp empty 
-```
+  `gulp empty`
 
 4. Build it!
 
-```
-gulp
-```
+  `gulp`
 
-Gulp will now watch folders for changes and make the appropriate build changes (if you want to do a singular build, run `gulp nowatch`). Files in the `/src` folder will be built in the `dist` folder. The dist folder is then ready to be compressed or imported to Chrome as an unpacked extension.
+This is a singular build; if you want gulp to watch folders for changes and make the appropriate build changes, run `gulp watch`. If you want to hint your JS (please do), run `gulp hint`.
+
+Files in the `/src` folder will be built in the `dist` folder. The dist folder is then ready to be compressed or imported to Chrome as an unpacked extension.
 
 ## Adding Rules to the Code
 If you have a general rule that you think others could find helpful, feel free to PR it. The fields are pretty self explanatory and match the GUI rule addition interface. The `uid` field can be left as is; it's just adding the unique ID for the rule. Risk is intended to describe the relative amount of problems scanning the wrong site with the rule could cause -- e.g. getting scanned for open phpMyAdmin installs is pretty much par for the course for 99% of web servers and is low risk, but punching at a bunch of variations of `../../../../../etc/passwd` grabs could irk some people and is high risk. It's all relative, but use your best judgment. 
