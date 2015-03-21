@@ -27,11 +27,15 @@ Download from the Chrome Web Store [here](http://example.com).
 
   `gulp empty`
 
-4. Build it!
+4. Build it, using any of the following commands:
 
-  `gulp`
+| `gulp` command  | result |
+| ------------- | ------------- |
+| `gulp`  | Lint the code and build the `src` directory into the `dist` directory. `dist` can be imported as an unpacked extension  |
+| `gulp zip`  | Lint the code and build the `src` directory into the `dist` directory, then zip the `dist` directory into `bishop.zip` in the root `bishop` folder.  |
+| `gulp watch`  | Build the `src` directory into the `dist` directory and rebuild on changes to `src`.  |
+| `gulp hint`  | Lint all non-lib js. Doesn't build anything; done as part of `gulp`.  |
 
-This is a singular build; if you want gulp to watch folders for changes and make the appropriate build changes, run `gulp watch` (this will *not* hint your js on build; the default will).
 
 Files in the `/src` folder will be built in the `dist` folder. The dist folder is then ready to be compressed or imported to Chrome as an unpacked extension.
 
