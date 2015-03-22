@@ -67,4 +67,4 @@ MIT.
 
 ***
 
-[![Flattr this](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=jkingsman&amp;url=https%3A%2F%2Fgithub.com%2Fjkingsman%2Fbishop) 
+[![Flattr this](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=jkingsman&url=https%3A%2F%2Fgithub.com%2Fjkingsman%2Fbishop) 
