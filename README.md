@@ -60,7 +60,7 @@ If you have a general rule that you think others could find helpful, feel free t
  
 rules: `[{"description":"a few words descripting it","enabled":true,"name":"The Rule Name","risk":"low","searchString":"the regex to execut","uid":"random hex ID","url":"what URL addition )if any) to run the regex on"}, {...}]`
 
-sites: `[{"rule":"mathced rule name","uid":"random hex uid","url":matched URL"}, {...}]`
+sites: `[{"rule":"matched rule name","uid":"random hex uid","url":matched URL"}, {...}]`
 
 ## License
 MIT.
