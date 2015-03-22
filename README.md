@@ -11,15 +11,14 @@ Bishop is MIT licensed and open source; contribute at https://github.com/jkingsm
 
 ## Installation
 
-***After either installation method, you'll need to setup your inclusion whitelist (see the introduction on first run for more info).***
+> After either installation method, you'll need to setup your inclusion whitelist (see the introduction on first run for more info).
 
 ### Automatic
-Download from the Chrome Web Store.
+Download from the [Chrome Web Store](https://chrome.google.com/webstore/detail/cbkdeoaaclnbidadjimofnhpbfhjakoe).
 
 [![Image of Chrome Store Badge](https://developer.chrome.com/webstore/images/ChromeWebStore_Badge_v2_340x96.png)](https://chrome.google.com/webstore/detail/cbkdeoaaclnbidadjimofnhpbfhjakoe)
 
 ### Manual
-
 
 > You'll need node and npm set up on your system (which is beyond the scope of this README), and gulp installed (`npm install -g gulp` if you don't already have it).
 
@@ -56,11 +55,14 @@ If you have a general rule that you think others could find helpful, feel free t
 
 ## Notes
 - Bishop is built on sending background XHR requests, many of which will result in 404's. These *will* show up in your console log, so be aware of that when browsing. If you feel comfortable ignoring 404's, you can check the "Hide network messages" box at the top of the console window.
+
 - The import formats are as follows: 
  
-rules: `[{"description":"a few words descripting it","enabled":true,"name":"The Rule Name","risk":"low","searchString":"the regex to execut","uid":"random hex ID","url":"what URL addition )if any) to run the regex on"}, {...}]`
+  - rules
+    - `[{"description":"a few words descripting it","enabled":true,"name":"The Rule Name","risk":"low","searchString":"the regex to execut","uid":"random hex ID","url":"what URL addition )if any) to run the regex on"}, {...}]`
 
-sites: `[{"rule":"matched rule name","uid":"random hex uid","url":matched URL"}, {...}]`
+  - sites
+    - `[{"rule":"matched rule name","uid":"random hex uid","url":matched URL"}, {...}]`
 
 ## License
 MIT.
