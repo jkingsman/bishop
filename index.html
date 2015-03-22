@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>♝ Bishop by jkingsman</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>♝ Bishop</h1>
+        <h2>Hunt for vulnerable websites as you browse.</h2>
+        <a href="https://github.com/jkingsman/bishop" class="button"><small>View project on</small> GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
+<a id="bishop" class="anchor" href="#bishop" aria-hidden="true"><span class="octicon octicon-link"></span></a>Bishop</h1>
+
+<p>Bishop is a vulnerability scanner that searches websites in the background while you browse, looking for exposed version control systems, misconfigured administrative tools, and more.</p>
+
+<p>It works by searching for files with a given path on the current URL path and all parent paths, applying given regex to the results to check for proof positive of a vulnerable location. If the path returns 200 and matches the regex, it's flagged as vulnerable and alerts you. All rules are run on all directories in a set of time-staggered background XHR requests, so network throughput remains high at all times.</p>
+
+<p>Bishop comes with a set of rules that hunt for the lowest hanging fruit, but the rule system is entirely extensible - rules are regular expressions that are run on specified directories, so if you can turn it into a regex, Bishop will look for it. Try loading Bishop with the demo ruleset and see how it works. The risk classification allows you to set different tiers of vulnerability so applications can be tested to stricter or looser security guidelines.</p>
+
+<p>Bishop is intended SOLELY for legal use on web servers that you control or are permitted to scan, and the developers are not responsible for how you choose to use this software. Be safe and legal with this tool. Rate limiting </p>
+
+<p>Bishop is MIT licensed and open source; contribute at <a href="https://github.com/jkingsman/bishop">https://github.com/jkingsman/bishop</a>.</p>
+
+<h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<blockquote>
+<p>After either installation method, you'll need to setup your inclusion whitelist (see the introduction on first run for more info).</p>
+</blockquote>
+
+<h3>
+<a id="automatic" class="anchor" href="#automatic" aria-hidden="true"><span class="octicon octicon-link"></span></a>Automatic</h3>
+
+<p>Download from the <a href="https://chrome.google.com/webstore/detail/cbkdeoaaclnbidadjimofnhpbfhjakoe">Chrome Web Store</a>.</p>
+
+<p><a href="https://chrome.google.com/webstore/detail/cbkdeoaaclnbidadjimofnhpbfhjakoe"><img src="https://developer.chrome.com/webstore/images/ChromeWebStore_Badge_v2_340x96.png" alt="Image of Chrome Store Badge"></a></p>
+
+<h3>
+<a id="manual" class="anchor" href="#manual" aria-hidden="true"><span class="octicon octicon-link"></span></a>Manual</h3>
+
+<blockquote>
+<p>You'll need node and npm set up on your system (which is beyond the scope of this README), and gulp installed (<code>npm install -g gulp</code> if you don't already have it).</p>
+</blockquote>
+
+<ol>
+<li>
+<p>Clone this repo:</p>
+
+<p><code>git clone git@github.com:jkingsman/bishop.git</code></p>
+</li>
+<li>
+<p>Move into it:</p>
+
+<p><code>cd bishop</code></p>
+</li>
+<li>
+<p>Install the gulp dependencies:</p>
+
+<p><code>npm install</code></p>
+</li>
+<li>
+<p>Make sure the build directory is empty:</p>
+
+<p><code>gulp empty</code></p>
+</li>
+<li><p>Build it, using any of the following commands:</p></li>
+</ol>
+
+<table>
+<thead>
+<tr>
+<th>
+<code>gulp</code> command</th>
+<th>result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>gulp</code></td>
+<td>Lint the code and build the <code>src</code> directory into the <code>dist</code> directory. <code>dist</code> can be imported as an unpacked extension</td>
+</tr>
+<tr>
+<td><code>gulp zip</code></td>
+<td>Lint the code and build the <code>src</code> directory into the <code>dist</code> directory, then zip the <code>dist</code> directory into <code>bishop.zip</code> in the root <code>bishop</code> folder.</td>
+</tr>
+<tr>
+<td><code>gulp watch</code></td>
+<td>Build the <code>src</code> directory into the <code>dist</code> directory and rebuild on changes to <code>src</code>.</td>
+</tr>
+<tr>
+<td><code>gulp hint</code></td>
+<td>Lint all non-lib js. Doesn't build anything; done as part of <code>gulp</code>.</td>
+</tr>
+</tbody>
+</table>
+
+<p>Files in the <code>/src</code> folder will be built in the <code>dist</code> folder. The dist folder is then ready to be compressed or imported to Chrome as an unpacked extension.</p>
+
+<h2>
+<a id="adding-rules-to-the-code" class="anchor" href="#adding-rules-to-the-code" aria-hidden="true"><span class="octicon octicon-link"></span></a>Adding Rules to the Code</h2>
+
+<p>If you have a general rule that you think others could find helpful, feel free to PR it. The fields are pretty self explanatory and match the GUI rule addition interface. The <code>uid</code> field can be left as is; it's just adding the unique ID for the rule. Risk is intended to describe the relative risk that such a vulnerability would indicate, allowing you to include stricter or looser security requirements for different applications.</p>
+
+<h2>
+<a id="notes" class="anchor" href="#notes" aria-hidden="true"><span class="octicon octicon-link"></span></a>Notes</h2>
+
+<ul>
+<li><p>Bishop is built on sending background XHR requests, many of which will result in 404's. These <em>will</em> show up in your console log, so be aware of that when browsing. If you feel comfortable ignoring 404's, you can check the "Hide network messages" box at the top of the console window.</p></li>
+<li>
+<p>The import formats are as follows: </p>
+
+<ul>
+<li>
+<p>rules</p>
+
+<ul>
+<li><code>[{"description":"a few words descripting it","enabled":true,"name":"The Rule Name","risk":"low","searchString":"the regex to execut","uid":"random hex ID","url":"what URL addition )if any) to run the regex on"}, {...}]</code></li>
+</ul>
+</li>
+<li>
+<p>sites</p>
+
+<ul>
+<li><code>[{"rule":"matched rule name","uid":"random hex uid","url":matched URL"}, {...}]</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p>MIT.</p>
+
+<hr>
+
+<p><a href="https://flattr.com/submit/auto?user_id=jkingsman&amp;url=https%3A%2F%2Fgithub.com%2Fjkingsman%2Fbishop"><img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this"></a> </p>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/jkingsman/bishop/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/jkingsman/bishop/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/jkingsman/bishop"></a> is maintained by <a href="https://github.com/jkingsman">jkingsman</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
