@@ -11,7 +11,7 @@ Bishop is MIT licensed and open source; contribute at https://github.com/jkingsm
 
 ## Installation
 
-After either installation method, you'll need to setup your inclusion whitelist (see the introduction on first run for more info).
+***After either installation method, you'll need to setup your inclusion whitelist (see the introduction on first run for more info).***
 
 ### Automatic
 Download from the Chrome Web Store.
