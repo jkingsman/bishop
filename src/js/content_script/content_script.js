@@ -20,8 +20,7 @@ chrome.storage.sync.get(null, function (data) {
 function doScan(currentScanUrl, recursive) {
     var matchPattern = new RegExp(config.inclusionRegex);
     if (!matchPattern.test(currentScanUrl)) {
-        console.log("dicks");
-        return;
+        return false;
     }
 
     if (recursive) {
