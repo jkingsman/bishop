@@ -42,13 +42,10 @@ Download from the [Chrome Web Store](https://chrome.google.com/webstore/detail/c
 
 | `gulp` command  | result |
 | ------------- | ------------- |
-| `gulp`  | Lint the code and build the `src` directory into the `dist` directory. `dist` can be imported as an unpacked extension  |
+| `gulp`  | Lint the code and build the `src` directory into the `dist` directory. `dist` can be imported as an unpacked extension.  |
 | `gulp zip`  | Lint the code and build the `src` directory into the `dist` directory, then zip the `dist` directory into `bishop.zip` in the root `bishop` folder.  |
 | `gulp watch`  | Build the `src` directory into the `dist` directory and rebuild on changes to `src`.  |
-| `gulp hint`  | Lint all non-lib js. Doesn't build anything; done as part of `gulp`.  |
-
-
-Files in the `/src` folder will be built in the `dist` folder. The dist folder is then ready to be compressed or imported to Chrome as an unpacked extension.
+| `gulp hint`  | Lint all non-lib js. Doesn't build anything; done as part of `gulp` and `gulp zip`.  |
 
 ## Adding Rules to the Code
 If you have a general rule that you think others could find helpful, feel free to PR it. The fields are pretty self explanatory and match the GUI rule addition interface. The `uid` field can be left as is; it's just adding the unique ID for the rule. Risk is intended to describe the relative risk that such a vulnerability would indicate, allowing you to include stricter or looser security requirements for different applications.
