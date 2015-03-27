@@ -5,7 +5,7 @@ It works by searching for files with a given path on the current URL path and al
 
 Bishop comes with a set of rules that hunt for the lowest hanging fruit, but the rule system is entirely extensible - rules are regular expressions that are run on specified directories, so if you can turn it into a regex, Bishop will look for it. Try loading Bishop with the demo ruleset and see how it works. The risk classification allows you to set different tiers of vulnerability so applications can be tested to stricter or looser security guidelines.
 
-Bishop is intended SOLELY for legal use on web servers that you control or are permitted to scan, and the developers are not responsible for how you choose to use this software. Be safe and legal with this tool. Rate limiting 
+Bishop is intended SOLELY for legal use on web servers that you control or are permitted to scan, and the developers are not responsible for how you choose to use this software. Be safe and legal with this tool. 
 
 Bishop is MIT licensed and open source; contribute at https://github.com/jkingsman/bishop.
 
