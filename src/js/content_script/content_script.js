@@ -105,7 +105,7 @@ function addSiteAndAlert(url, rule) {
             //insert the alert itself
             document.body.insertAdjacentHTML('afterBegin', '<div id="note">&#9821; Bishop matched your rule "' + rule + '". (Refresh page to dismiss)</div>');
         }
-        
+
         //set the page title
         document.title = "(VULNERABLE) | " + document.title;
     });
@@ -138,16 +138,21 @@ function upAndMatch(url, regex, ruleName) {
     var req = new XMLHttpRequest();
     var pattern = new RegExp(regex);
 
-    req.open('GET', url, false);
-    req.send();
+    req.open('GET', url, true);
 
-    if (req.status == 200) {
-        if (pattern.test(req.responseText)) {
-            addSiteAndAlert(url, ruleName);
+    req.onload = function () {
+        if (req.readyState === 4) {
+            if (req.status === 200) {
+                if (pattern.test(req.responseText)) {
+                    addSiteAndAlert(url, ruleName);
+                }
+            }
+        } else {
+            console.error(req.statusText);
         }
-        return false;
-    }
-    return false;
+    };
+
+    req.send();
 }
 
 function stripTrailingSlash(url) {
