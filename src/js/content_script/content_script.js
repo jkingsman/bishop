@@ -44,8 +44,12 @@ function scanURL(url) {
         delay += (config.xhrDelay * 1000);
         var rule = rules[i];
         if (rule.enabled) {
-            //use a lesser-known setTimeout syntax:
-            //   setTimeout(function, delay, functionParam1, functionParam2, functionParam3, functionParam4, ...)
+            /* use a lesser-known setTimeout syntax so we can pass the var vals as they are at the
+             * time we create the timeout (otherwise they'll pass by reference and the values will
+             * be all whacked out by the time last ones run).
+             *
+             *     setTimeout(function, delay, functionParam1, functionParam2, functionParam3, functionParam4, ...)
+             */
             setTimeout(upAndMatch, delay, url + "/" + rule.url, rule.searchString, rule.name);
         }
     }
