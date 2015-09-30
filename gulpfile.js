@@ -17,12 +17,12 @@ gulp.task('hint', function () {
 
 //clear out the folder
 gulp.task('empty', function() {
-    del(['./dest/**', './bishop.zip']);
+    del(['./dist/**', '!./dist', '!./dist/.gitignore', './bishop.zip']);
 });
 
 // minify our html
 gulp.task('html', function () {
-    gulp.src('./src/html/*.html') 
+    gulp.src('./src/html/*.html')
     .pipe(minifyHtml())
     .pipe(gulp.dest('./dist/'));
 });
@@ -36,7 +36,7 @@ gulp.task('main-css', function () {
 });
 
 gulp.task('alert-css', function () {
-    gulp.src('./src/css/alert.css') 
+    gulp.src('./src/css/alert.css')
     .pipe(minifyCss())
     .pipe(concat('alert.css'))
     .pipe(gulp.dest('./dist/'));
@@ -46,7 +46,7 @@ gulp.task('alert-css', function () {
 
 //background
 gulp.task('js-background', function () {
-    gulp.src('./src/js/background/*') 
+    gulp.src('./src/js/background/*')
     .pipe(uglify())
     .pipe(concat('background.js'))
     .pipe(gulp.dest('./dist/'));
@@ -54,7 +54,7 @@ gulp.task('js-background', function () {
 
 //content_script
 gulp.task('js-content', function () {
-    gulp.src('./src/js/content_script/*') 
+    gulp.src('./src/js/content_script/*')
     .pipe(uglify())
     .pipe(concat('content_script.js'))
     .pipe(gulp.dest('./dist/'));
@@ -62,7 +62,7 @@ gulp.task('js-content', function () {
 
 //popup
 gulp.task('js-popup', function () {
-    gulp.src('./src/js/popup/*') 
+    gulp.src('./src/js/popup/*')
     .pipe(uglify())
     .pipe(concat('popup.js'))
     .pipe(gulp.dest('./dist/'));
@@ -78,7 +78,7 @@ gulp.task('js-options', function () {
 
 //lib
 gulp.task('js-lib', function () {
-    gulp.src(['./src/js/lib/jquery-1.9.1.js', './src/js/lib/bootstrap.js', './src/js/lib/bootstrap-growl.min.js', './src/js/lib/intro.js']) 
+    gulp.src(['./src/js/lib/jquery-1.9.1.js', './src/js/lib/bootstrap.js', './src/js/lib/bootstrap-growl.min.js', './src/js/lib/intro.js'])
     .pipe(uglify())
     .pipe(concat('lib.js'))
     .pipe(gulp.dest('./dist/'));

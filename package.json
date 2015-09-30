@@ -1,6 +1,6 @@
 {
   "name": "bishop",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "Scan websites for vulnerabilities in the background as you browse.",
   "main": "index.js",
   "scripts": {
